@@ -18,6 +18,8 @@ en_status			processCmd(char* buffer, char* envp[], int* fds)
         free(argv);
         return STATUS_SUCCESS;
     }
+
+    cmdResult = STATUS_NULL;
 	cmdResult = processBuiltinCmd(str, fds);
     if (cmdResult == STATUS_EXIT)
         exit_shell();

@@ -25,12 +25,13 @@
 
 typedef enum {  BI_NONE, BI_CHDIR, BI_EXIT,
                 BI_PWD, BI_ENV, BI_ECHO,
-                BU_DOLLARS }
+                BU_DOLLARS, BI_SETENV,
+                BI_UNSET }
                                 en_builtin;
 
 typedef enum {  STATUS_SUCCESS=0, STATUS_FAILURE,
                 STATUS_SOFT_FAILURE, // "Soft" failure
-                STATUS_EXIT, STATUS_UNRECOGNIZED }   en_status;
+                STATUS_EXIT, STATUS_UNRECOGNIZED, STATUS_NULL }   en_status;
 
 
 static const int MAX_PATH_SIZE = 1024;
@@ -71,6 +72,11 @@ en_status               bultinECHO(char   **words);
 void			        handle_2(char *str, char c);
 int     		        handle_echo(char *str);
 int 	                handle_redirect_echo(char *str);
+en_status               bultinSETENV(char   **words);
+int                     handle_export(char *str);
+int		                handle_redirect_setenv(char *str);
+en_status               bultinUNSET(char   **words);
+int 			        handle_unset(char *str);
 
 void	        	*ft_memalloc(size_t size);
 char	**split(char *raw_cmd, char *limit);
@@ -103,8 +109,6 @@ char            	**ft_split(char *str, char *charset);
 void			print_env(void);
 int		        envv_len(char **envv);
 void    		remove_env_var(int var_pos);
-void			handle_export(char *str);
-void			handle_unset(char *str);
 char            	*malloc_sortie(int len);
 int		        calc_c(char *str, char c);
 char		  	  *parse_dollar(char *str);

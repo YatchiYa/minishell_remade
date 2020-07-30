@@ -37,6 +37,7 @@ void	minishell(char **envv)
 	status = 1;
 	while (status)
 	{
+		isPipe = 0;
 		if (ctrld == 0)
 			display_prompt_msg();
 		signal_handler_main();
@@ -71,7 +72,6 @@ int		main(int ac, char **av, char **envv)
 {
 	init_envv(ac, av, envv);
 	system("clear");
-	isPipe = 0;
 	ft_putstr(" \033[31mWelcome\033[0m\033[32mTo\033[0m\033[33m << ");
 	ft_putstr("\033[0m\033[34mMinishell\033[0m\033[35m >>\033[0m \n");
 	set_env_var("OLDPWD", " ");

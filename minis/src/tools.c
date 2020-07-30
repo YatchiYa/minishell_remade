@@ -110,8 +110,8 @@ char	**split_commande(char *line)
 	if (!(dest[1] = malloc(sizeof(char) * (ft_strlenx(line) + 1))))
 		return (NULL);
 	line = line + i;
-    while (*line == ' ')
-        ++line;
+    //while (*line == ' ')
+    //    ++line;
 	i = -1;
 	while (line[++i])
 		dest[1][i] = line[i];
