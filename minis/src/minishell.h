@@ -120,6 +120,9 @@ char		            **sub_argv(char **argv);
 char		            **trim_arg(char **argv, int index);
 
 
+int			redirect_index_input(char **argv);
+int			redirect_index_output(char **argv);
+
 // a enlevr
 void	display_argv(char **argv);
 

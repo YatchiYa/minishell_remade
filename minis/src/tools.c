@@ -58,6 +58,36 @@ int			redirect_index(char **argv)
 	return (0);
 }
 
+int			redirect_index_output(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (strcmp(argv[i], ">") == 0 || 
+			(argv[i + 1] && strcmp(argv[i], ">") == 0 && strcmp(argv[i + 1], ">") == 0))
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+int			redirect_index_input(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (strcmp(argv[i], "<") == 0 || 
+)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 void	display_argv(char **argv)
 {
 	int		i;

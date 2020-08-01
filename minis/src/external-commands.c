@@ -62,6 +62,8 @@ en_status forkExecWait(char* path, char** argv, int argc, char *envp[], int* fds
 	int		index;
     pid_t   pid = fork();
 	char	**tmp_argv;
+    int     index_output = 0;
+    int     index_input = 0;
     
 	tmp_argv = (char**)malloc(sizeof(argv));
 	while (argv[i])
@@ -71,6 +73,8 @@ en_status forkExecWait(char* path, char** argv, int argc, char *envp[], int* fds
 	}
 	tmp_argv[i] = NULL;
 	index = redirect_index(argv);
+	index_output = redirect_index_output(argv);
+	index_input = redirect_index_input(argv);
 	if(pid == 0){
 		// Child:
 		if(fds){
@@ -83,30 +87,29 @@ en_status forkExecWait(char* path, char** argv, int argc, char *envp[], int* fds
 		}
 		if (argv && (index) != 0)
 		{
-			if (strcmp(argv[index], ">") == 0)
+			if (index_output != 0 && strcmp(argv[index_output], ">") == 0)
 			{
-				if (argv[index + 1] == NULL)
+				if (argv[index_output + 1] == NULL)
 				{
 					ft_putstr("minishell > eror file not defined\n");
 					return (STATUS_FAILURE);
 				}
-				fdx = open(argv[index + 1], O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
+				fdx = open(argv[index_output + 1], O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
 				if (dup2(fdx, 1) == -1)
-					perror("dupp 1 ");
-				tmp_argv = sub_argv(argv);				
+					perror("dupp 1 ");				
 			}
-			if (strcmp(argv[index], "<") == 0)
+			if (index_input != 0 && strcmp(argv[index_input], "<") == 0)
 			{
-				if (argv[index + 1] == NULL)
+				if (argv[index_input + 1] == NULL)
 				{
 					ft_putstr("minishell > eror file not defined\n");
 					return (STATUS_FAILURE);
 				}
-				fdx = open(argv[index + 1], O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
+				fdx = open(argv[index_input + 1], O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
 				if (dup2(fdx, 0) == -1)
-					perror("dupp 1 ");
-				tmp_argv = sub_argv(argv);				
+					perror("dupp 1 ");		
 			}
+			tmp_argv = sub_argv(argv);
 		}
 		return execve(path, tmp_argv, envp);
 	}
