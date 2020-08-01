@@ -15,6 +15,11 @@ en_status	exec_command(char *line)
 	en_status	status;
 
 	ret = 0;
+	if (check_error(line) == 0)
+	{
+		printf("minishell : syntax error \n");
+		return (1);
+	}
 	line = ft_substr(line, 0, ft_strlenx(line) - 1);
 	tab = ft_strsplit(line, ';');
 	ret = 0;

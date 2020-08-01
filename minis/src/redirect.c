@@ -44,10 +44,10 @@ void	handle_1(char *str, char c)
 
 	tab = ft_strsplit(str, c);
 	i = 0;
-	//while (tab[1] && *tab[1] == ' ')
-	//	*tab[1]++;
-	//while (tab[0] && *tab[0] == ' ')
-	//	*tab[0]++;
+	while (tab[1] && *tab[1] == ' ')
+		*tab[1]++;
+	while (tab[0] && *tab[0] == ' ')
+		*tab[0]++;
 	remove(trim_queue(tab[1]));
 	fd = open(trim_queue(tab[1]), O_RDWR | O_CREAT, S_IRWXU | O_TRUNC);
 	while (tab[0][i])
@@ -70,10 +70,10 @@ void	handle_2(char *str, char c)
 
 	tab = ft_strsplit(str, c);
 	i = 0;
-	//while (tab[1] && *tab[1] == ' ')
-	//	*tab[1]++;
-	//while (tab[0] && *tab[0] == ' ')
-	//	*tab[0]++;
+	while (tab[1] && *tab[1] == ' ')
+		*tab[1]++;
+	while (tab[0] && *tab[0] == ' ')
+		*tab[0]++;
 	fd = open(trim_queue(tab[1]), O_RDWR);
 	if (fd == -1)
 	{
@@ -106,10 +106,10 @@ void	handle_3(char *str, char c)
 
 	tab = ft_strsplit(str, c);
 	i = 0;
-	//while (tab[1] && *tab[1] == ' ')
-	//	*tab[1]++;
-	//while (tab[0] && *tab[0] == ' ')
-	//	*tab[0]++;
+	while (tab[1] && *tab[1] == ' ')
+		*tab[1]++;
+	while (tab[0] && *tab[0] == ' ')
+		*tab[0]++;
 	fd = open(trim_queue(tab[1]), O_RDWR);
 	if (fd == -1)
 	{
