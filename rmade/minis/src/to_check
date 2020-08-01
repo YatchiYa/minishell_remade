@@ -1,2 +1,0 @@
-
-echo -n test > file1 ::: probleme with -n not detected

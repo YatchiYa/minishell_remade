@@ -36,24 +36,6 @@ int	ssx(char *str, char *delim)
 	return (0);
 }
 
-int	search_delim(char *str, char c, int n)
-{
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
-	while (str[i] && ss(str[i], ">|<") == 0)
-	{
-		if (str[i] == c)
-			res++;
-		i++;
-	}
-	if (res != n)
-		return (0);
-	return (1);
-}
-
 void	handle_1(char *str, char c)
 {
 	int	i;
@@ -139,32 +121,6 @@ void	handle_3(char *str, char c)
 	close(fd);
 }
 
-char	*ft_strchrx(char *s, char c)
-{
-	int		i;
-
-	i = 0;
-	if (s == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (s + i);
-		i++;
-	}
-	return (NULL);
-}
-
-char	*delim_ptr(char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i] && str[i] != '>' && str[i] != '<')
-		i++;
-	return (&str[i]);
-}
 
 int		handle_redirect_pwd(char *str)
 {
@@ -172,6 +128,11 @@ int		handle_redirect_pwd(char *str)
 	char		*res;
 	char		*tmp;
 
+	if (check_error(str) == 0)
+	{
+		printf("minishell : syntax error \n");
+		return (1);
+	}
 	res = delim_ptr(str);
 	if (res[0] == '<')
 	{
@@ -210,6 +171,11 @@ int		handle_redirect_env(char *str)
 	char		*res;
 	char		*tmp;
 
+	if (check_error(str) == 0)
+	{
+		printf("minishell : syntax error \n");
+		return (1);
+	}
 	res = delim_ptr(str);
 	if (res[0] == '<')
 	{
@@ -241,13 +207,17 @@ int		handle_redirect_env(char *str)
 	return (0);
 }
 
-
 int		handle_redirect_echo(char *str)
 {
 	int			i;
 	char		*res;
-	char		*tmp;
+	char		*tmp;	
 	
+	if (check_error(str) == 0)
+	{
+		printf("minishell : syntax error \n");
+		return (1);
+	}
 	if (str[0] == '>' || str[0] == '<')
 		str = ft_strjoin(" ", str);
 	res = delim_ptr(str);
@@ -255,23 +225,23 @@ int		handle_redirect_echo(char *str)
 	{
 		handle_2(str, '<');
 		if ((tmp = ft_strchrx(res + 1, '>')) == NULL )
-			handle_echo(" ");
+			return (handle_echo(" "));
 		else
-			handle_echo(tmp);
+			return (handle_echo(tmp));
 	}
 	else if (res[0] == '>' && res[1] == '>')
 	{
 		handle_2(str, '>');
 		if ((tmp = ft_strchrx(res + 2, '>')) != NULL || 
 			(tmp = ft_strchrx(res + 2, '<')) != NULL )
-			handle_echo(tmp);
+			return (handle_echo(tmp));
 	}
 	else if (res[0] == '>')
-	{		
+	{
 		handle_1(str, '>');
 		if ((tmp = ft_strchrx(res + 1, '>')) != NULL || 
 			(tmp = ft_strchrx(res + 1, '<')) != NULL )
-			handle_echo(tmp);
+			return (handle_echo(tmp));
 	}
 	else
 	{

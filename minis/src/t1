@@ -1,1 +1,1 @@
-src/a.out src/builtin.c src/cd.c src/close.c src/dollar.c src/echo.c src/env.c src/envv.c src/export.c src/external-commands.c src/ft_split.c src/ft_strsplit.c src/get_absolute_path.c src/gnl src/init.c src/itoa.c src/main.c src/minishell.c src/minishell.h src/parse_line.c src/prompt.c src/pwd.c src/redirect.c src/signal.c src/t1 src/test src/to_check src/tools.c src/trim_parse.c src/unset.c
+

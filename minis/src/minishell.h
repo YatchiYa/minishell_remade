@@ -21,7 +21,7 @@
 # include "gnl/get_next_line.h"
 
 # define IS_QUOTE(x) (x == '"' || x == '\'')
-
+# define SEP "><|;"
 
 typedef enum {  BI_NONE, BI_CHDIR, BI_EXIT,
                 BI_PWD, BI_ENV, BI_ECHO,
@@ -111,5 +111,17 @@ int		        		ft_strstartswith(char *s1, char *s2);
 char					*ft_strchr(const char *s, int c);
 char            		**ft_split(char *str, char *charset);
 char		  	  		*parse_dollar(char *str);
+en_status               forkExecWait(char* path, char** argv, int argc, char *envp[], int* fds);
+int		                check_error(char *str);
+int		                check_is_sep(char *str);
+char	                *ft_strchrx(char *s, char c);
+int			            redirect_index(char **argv);
+char		            **sub_argv(char **argv);
+char		            **trim_arg(char **argv, int index);
+
+
+// a enlevr
+void	display_argv(char **argv);
+
 
 #endif // !MINISHELL_H

@@ -1,6 +1,151 @@
 
 #include "minishell.h"
 
+char		**trim_arg(char **argv, int index)
+{
+	int		i;
+	int		j;
+	char	**tmp;
+
+	i = 0;
+	j = 0;
+	if (argv == NULL || argv[i] == NULL)
+		return (NULL);
+	tmp = (char**)malloc(sizeof(argv));
+	while (argv[i])
+	{
+		if (i == index && i != 0)
+			i += 2;
+		if (argv[i])
+		{
+			tmp[j] = strdup(argv[i]);
+			j++;
+			i++;
+		}
+	}
+	tmp[j] = NULL;
+	return (tmp);
+}
+
+char		**sub_argv(char **argv)
+{
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	tmp = (char**)malloc(sizeof(argv));
+	while (argv[i] && strcmp(argv[i], ">") != 0 && strcmp(argv[i], "<") != 0)
+	{
+		tmp[i] = strdup(argv[i]);
+		i++;
+	}
+	tmp[i] = NULL;
+	return (tmp);
+}
+
+int			redirect_index(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (strcmp(argv[i], ">") == 0 || strcmp(argv[i], "<") == 0 || 
+			(argv[i + 1] && strcmp(argv[i], ">") == 0 && strcmp(argv[i + 1], ">") == 0))
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+void	display_argv(char **argv)
+{
+	int		i;
+
+	i = 0;
+	while (argv && argv[i])
+	{
+		printf("argv[%d] = [%s]\n", i, argv[i]);
+		i++;
+	}
+}
+
+int	search_delim(char *str, char c, int n)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (str[i] && ss(str[i], ">|<") == 0)
+	{
+		if (str[i] == c)
+			res++;
+		i++;
+	}
+	if (res != n)
+		return (0);
+	return (1);
+}
+
+char	*delim_ptr(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i] && str[i] != '>' && str[i] != '<')
+		i++;
+	return (&str[i]);
+}
+
+char	*ft_strchrx(char *s, char c)
+{
+	int		i;
+
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (s + i);
+		i++;
+	}
+	return (NULL);
+}
+
+int		check_is_sep(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (SEP[i])
+	{
+		if (SEP[i] == str[0])
+			return (0);
+		i++;
+	}
+	return (1);
+	
+}
+
+int		check_error(char *str)
+{
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_strsplit(str, ' ');
+	while (tmp[i] && tmp[i + 1])
+	{
+		if (check_is_sep(tmp[i]) == 0 && check_is_sep(tmp[i + 1]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ft_bzero(void *s, size_t n)
 {
 	char	*ptr;
@@ -184,9 +329,10 @@ char** strcpyArray(char** strings){
     return newArray;
 }
 int wordCount(char** words){
-    assert(words);
+    //assert(words);
     int count = 0;
-    while(words[count]){
+    while(words[count])
+	{
         ++count;
     }
     return count;

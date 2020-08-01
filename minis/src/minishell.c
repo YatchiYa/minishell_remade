@@ -22,7 +22,9 @@ en_status			processCmd(char* buffer, char* envp[], int* fds)
     if(cmdResult == STATUS_UNRECOGNIZED)
         cmdResult = processExternalCmd(argv, num, envp, fds);
     free((void**)(argv));
+    free((void**)(str));
     argv = NULL;
+    str = NULL;
     return cmdResult;
 }
 

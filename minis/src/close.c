@@ -17,6 +17,6 @@ void	ft_freestrarr(char **arr)
 
 void	exit_shell(void)
 {
-	ft_freestrarr(g_envv);
+	//ft_freestrarr(g_envv);
 	exit(0);
 }

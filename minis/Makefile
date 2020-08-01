@@ -21,7 +21,7 @@ SRC = src/builtin.c \
 	src/itoa.c \
 	src/main.c \
 	src/minishell.c \
-	src/minishell.h src/parse_line.c \
+	src/parse_line.c \
 	src/prompt.c \
 	src/pwd.c \
 	src/redirect.c \
@@ -42,7 +42,7 @@ $(LIBS):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(SRC)
-	$(CC) $(FLAGS) $(SRC) -o minishell
+	$(CC) $(FLAGS) -I $(HEADER) $(SRC) -o minishell
 
 clean:
 	rm -rf $(OBJS)
