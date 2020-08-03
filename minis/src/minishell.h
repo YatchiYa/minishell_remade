@@ -21,7 +21,7 @@
 # include "gnl/get_next_line.h"
 
 # define IS_QUOTE(x) (x == '"' || x == '\'')
-# define SEP "><|;"
+# define SEP "><|"
 
 typedef enum {  BI_NONE, BI_CHDIR, BI_EXIT,
                 BI_PWD, BI_ENV, BI_ECHO,
@@ -40,6 +40,7 @@ static const int MAX_INPUT_SIZE = 255;
 char	        		**g_envv;
 int                     isPipe;
 int                     ctrld;
+int                     ctrlc;
 
 
 en_status				pipeCmds(char* buffer);
@@ -52,12 +53,13 @@ int						wordCount(char** words);
 int						indexOf(char* str, const char* chars);
 void					printStrings(char** strs);
 char					**splitString(char* buffer, const char* sep, const char* substrsyms);
-en_status               processBuiltinCmd(char** words, int* fds);
+en_status               processbuiltincmd(char** words, int* fds);
 en_status				builtinChangeDir(char** words);
-en_builtin				builtinSwitch(char* word);
+en_builtin				builtinswitch(char* word);
 int 			        handle_cd(char *path);
-char		            *trim_parse(char *str);
 en_status               bultinCD(char   **words);
+int		                cd_handle_home(void);
+char		            *trim_parse(char *str);
 void	                get_absolute_path(char **cmd);
 en_status               bultinPWD(char   **words);
 int                     handle_pwd(char *str);
@@ -118,10 +120,11 @@ char	                *ft_strchrx(char *s, char c);
 int			            redirect_index(char **argv);
 char		            **sub_argv(char **argv);
 char		            **trim_arg(char **argv, int index);
-
-
-int			redirect_index_input(char **argv);
-int			redirect_index_output(char **argv);
+char	                *ft_strdupxx(char *src);
+int		                check_error_2(char *str);
+int			            redirect_index_input(char **argv);
+int			            redirect_index_output(char **argv);
+char                    *trim_start(char *str);
 
 // a enlevr
 void	display_argv(char **argv);

@@ -57,6 +57,12 @@ char			*trim_case(char *str)
 		{
 			if ((str[i] == '"' || str[i] == '\'') && str[i + 1] && str[i + 1] == ' ')
 				return (NULL);
+			if ((str[i] == ' ') && str[i + 1] && (str[i + 1] == '"' || str[i + 1] == '\''))
+				return (NULL);
+			if (str[i] == ' ' && str[i + 1] && str[i + 1] != ' ')
+				return (NULL);
+			if (str[i] != ' ' && str[i + 1] && str[i + 1] == ' ')
+				return (NULL);
 			i++;
 		}
 		j = -1;
@@ -97,13 +103,14 @@ int				handle_export(char *str)
 		j += res;
 		if (container[j] && (container[j] = trim_case(container[j])) == NULL)
 		{
-			ft_putstr("minishell > error parsing quotes\n");
+			ft_putstr("minishell > error parsing quotes and/or syntax error \n");
 			return (1);
 		}
 		if (container[j] != NULL)
 		{
 			tab = ft_strsplit(container[j], '=');
-			set_env_var(tab[0], tab[1]);
+			if (wordCount(tab) != 1)
+				set_env_var(tab[0], tab[1]);
 			j++;
 		}
 	}

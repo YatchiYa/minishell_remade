@@ -1,6 +1,28 @@
 
 #include "minishell.h"
 
+char	*ft_strdupxx(char *src)
+{
+	char	*dest;
+	int		src_len;
+	int		i;
+
+	src_len = 0;
+	while (src[src_len])
+		src_len++;
+	if (!(dest = (char *)malloc(sizeof(char) * (src_len + 1))))
+		return (NULL);
+	i = 0;
+	while (i < src_len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+
 char		**trim_arg(char **argv, int index)
 {
 	int		i;
@@ -11,19 +33,20 @@ char		**trim_arg(char **argv, int index)
 	j = 0;
 	if (argv == NULL || argv[i] == NULL)
 		return (NULL);
-	tmp = (char**)malloc(sizeof(argv));
-	while (argv[i])
+	tmp = (char**)malloc(sizeof(char *) * (wordCount(argv) + 1));
+	while (argv && argv[i])
 	{
 		if (i == index && i != 0)
-			i += 2;
+			i = i + 2;
 		if (argv[i])
 		{
-			tmp[j] = strdup(argv[i]);
+			tmp[j] = ft_strdupxx(argv[i]);
 			j++;
 			i++;
 		}
 	}
 	tmp[j] = NULL;
+
 	return (tmp);
 }
 
@@ -33,8 +56,9 @@ char		**sub_argv(char **argv)
 	char	**tmp;
 
 	i = 0;
-	tmp = (char**)malloc(sizeof(argv));
-	while (argv[i] && strcmp(argv[i], ">") != 0 && strcmp(argv[i], "<") != 0)
+	tmp = (char**)malloc(sizeof(char *) * (wordCount(argv) + 1));
+	while (argv[i] && strcmp(argv[i], ">") != 0 && strcmp(argv[i], "<") != 0 &&
+			strcmp(argv[i], ">>") != 0)
 	{
 		tmp[i] = strdup(argv[i]);
 		i++;
@@ -51,7 +75,7 @@ int			redirect_index(char **argv)
 	while (argv[i])
 	{
 		if (strcmp(argv[i], ">") == 0 || strcmp(argv[i], "<") == 0 || 
-			(argv[i + 1] && strcmp(argv[i], ">") == 0 && strcmp(argv[i + 1], ">") == 0))
+			(argv[i + 1] && strcmp(argv[i], ">>") == 0))
 			return (i);
 		i++;
 	}
@@ -66,7 +90,7 @@ int			redirect_index_output(char **argv)
 	while (argv[i])
 	{
 		if (strcmp(argv[i], ">") == 0 || 
-			(argv[i + 1] && strcmp(argv[i], ">") == 0 && strcmp(argv[i + 1], ">") == 0))
+			(argv[i + 1] && strcmp(argv[i], ">>") == 0))
 			return (i);
 		i++;
 	}
@@ -80,8 +104,7 @@ int			redirect_index_input(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (strcmp(argv[i], "<") == 0 || 
-)
+		if (strcmp(argv[i], "<") == 0)
 			return (i);
 		i++;
 	}
@@ -166,12 +189,37 @@ int		check_error(char *str)
 	int		i;
 
 	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ';' && str[i + 1] && str[i + 1] == ';')
+		{
+			ft_putstr("minishell > syntax error ;;\n");
+			return (0);
+		}
+		i++;
+	}
+	i = 0;
 	tmp = ft_strsplit(str, ' ');
 	while (tmp[i] && tmp[i + 1])
 	{
 		if (check_is_sep(tmp[i]) == 0 && check_is_sep(tmp[i + 1]) == 0)
 			return (0);
 		i++;
+	}
+	return (1);
+}
+
+int		check_error_2(char *str)
+{
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_strsplit(str, ' ');
+	if (strcmp(tmp[0], "|") == 0 || tmp[wordCount(tmp) - 1][0] == '|')
+	{
+		ft_putstr("minishell : error parse pipe\n");
+		return (0);
 	}
 	return (1);
 }
@@ -270,7 +318,7 @@ char	**split_commande(char *line)
 
 	if (!(dest = (char**)malloc(sizeof(char*) * 3)))
 		return (NULL);
-	if (!(dest[0] = malloc(sizeof(char) * 10)))
+	if (!(dest[0] = malloc(sizeof(char) * (ft_strlenx(line) + 1))))
 		return (NULL);
 	i = -1;
     dest[3] = NULL;
@@ -322,7 +370,7 @@ int		strcontains(char *str, char c)
 
 
 int strReplace(char* str, char match, char replace){
-    assert(str);
+    //assert(str);
     int count = 0;
     for(int i = 0; str[i] != 0; ++i){
         if (str[i] == match) {
@@ -442,5 +490,26 @@ char        *trim_queue(char *str)
 	while (str[i] && str[++i] != ' ')
 		tmp[i] = str[i];
 	tmp[i] = '\0';
+	return (tmp);
+}
+
+char        *trim_start(char *str)
+{
+    char    *tmp;
+    int     i;
+	int		j;
+
+    i = 0;
+	tmp = malloc(sizeof(char) * (ft_strlenx(str) + 1));
+	while (str[i] && str[i] == ' ')
+		i++;
+	j = 0;
+	while (str[i])
+	{
+		tmp[j] = str[i];
+		j++;
+		i++;
+	}
+	tmp[j] = '\0';
 	return (tmp);
 }

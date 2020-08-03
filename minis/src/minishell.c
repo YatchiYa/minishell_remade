@@ -16,7 +16,7 @@ en_status			processCmd(char* buffer, char* envp[], int* fds)
     }
 
     cmdResult = STATUS_NULL;
-	cmdResult = processBuiltinCmd(str, fds);
+	cmdResult = processbuiltincmd(str, fds);
     if (cmdResult == STATUS_EXIT)
         exit_shell();
     if(cmdResult == STATUS_UNRECOGNIZED)
@@ -59,7 +59,7 @@ en_status           pipeCmds(char* buffer)
 {
     char    **commands;
     int     num;
-    int     status;
+    int     cmdResult;
 
     strReplace(buffer, '\n', 0);
 	if (buffer[0] == '"' || buffer[0] == '\'')
@@ -72,15 +72,26 @@ en_status           pipeCmds(char* buffer)
         return STATUS_SUCCESS;
     }
     if(num == 1){
-        int cmdResult = processCmd(commands[0], g_envv, NULL);
-        free(commands);
-        commands = 0;
+        cmdResult = processCmd(commands[0], g_envv, NULL);
+        //free(commands);
+        //commands = 0;
         if (cmdResult == STATUS_SUCCESS)
             set_env_var("?", "0");
         else
             set_env_var("?", "1");
+        free((void**)(commands));
+        commands = NULL;
         return cmdResult;
     }
 	else
-    	return (pipeCmds_extend(commands, num));
+    {
+        cmdResult = pipeCmds_extend(commands, num);
+        if (cmdResult == STATUS_SUCCESS)
+            set_env_var("?", "0");
+        else
+            set_env_var("?", "1");
+        free((void**)(commands));
+        commands = NULL;
+        return cmdResult;
+    }
 }

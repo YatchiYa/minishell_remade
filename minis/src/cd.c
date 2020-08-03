@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int			cd_simple(char *path)
+int		cd_simple(char *path)
 {
 	char	*cwd;
 	int		i;
@@ -38,7 +38,7 @@ int			cd_simple(char *path)
 	}
 }
 
-int			cd_complex(void)
+int		cd_complex(void)
 {
 	char	*cwd;
 	int		i;
@@ -71,12 +71,12 @@ int			cd_complex(void)
 	return (cd_simple(dest));
 }
 
-void	cd_handle_home(void)
+int		cd_handle_home(void)
 {
 	char	*cwd;
 
 	cwd = get_env_var("HOME");
-	cd_simple(cwd);
+	return (cd_simple(cwd));
 }
 
 int		handle_cdx(char *path)
@@ -146,10 +146,7 @@ int		handle_cd(char *str)
 	int		xet;
 	
 	if (str == NULL)
-	{
-		cd_handle_home();
-		return (0);
-	}
+		return (cd_handle_home());
 	dest = trim_quote(str, &ret, &xet);
 	if (ret % 2 != 0 && ret != 0)
 	{
@@ -163,25 +160,4 @@ int		handle_cd(char *str)
 	}
 	else
 		return (handle_cd_x(dest, str));
-}
-
-en_status           bultinCD(char   **words)
-{
-	char	**tmp;
-
-	if (words[1] == NULL)
-	{
-		cd_handle_home();
-        return STATUS_SUCCESS;
-	}
-	tmp = ft_strsplit(words[1], ' ');
-    if (tmp[1] != NULL)
-    {
-        ft_putstr("minishell > too many arguments \n");
-        return STATUS_SOFT_FAILURE;
-    }
-    int rval = handle_cd(tmp[0]);
-    if(rval == 0)
-        return STATUS_SUCCESS;
-    return STATUS_SOFT_FAILURE;
 }

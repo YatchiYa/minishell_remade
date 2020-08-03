@@ -1,24 +1,5 @@
 #include "minishell.h"
 
-void	extendx(char *str, char c)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (str[ft_strlenx(str) - 1] != c && calc_c(str, c) % 2 != 0)
-	{
-		line = NULL;
-		ft_putstr("quote > ");
-		get_next_line(0, &line);
-		str = ft_strjoin(str, "\\n");
-		str = ft_strjoin(str, line);
-	}
-    ft_putstr("Minishell : commande not found");   
-    ft_putstr(str);
-    ft_putstr("\n");
-}
-
 char		*trim_str(char *str)
 {
 	int		i;

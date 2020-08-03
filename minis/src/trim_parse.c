@@ -6,7 +6,7 @@ char			*trim_quote(char *str, int *ret, int *xet)
 	char	*dest;
 
     i = -1;
-    dest = malloc_sortie(ft_strlenx(str));
+    dest = malloc_sortie(sizeof(char) * (ft_strlenx(str) + 1));
     while (str[++i])
         dest[i] = str[i];
     dest[i] = '\0';
