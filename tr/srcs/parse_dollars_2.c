@@ -1,0 +1,117 @@
+
+#include "minishell.h"
+
+int			get_env_data(char key[], char *arg)
+{
+	int i;
+
+	i = 0;
+	while (arg[i] && !ft_is_sep_space(" $\"\'=\\", arg[i]))
+	{
+		key[i] = arg[i];
+		i++;
+	}
+	key[i] = '\0';
+	return (i);
+}
+
+int			get_value_dollars_parse(char *arg, char *buff, int *j)
+{
+	char	key[100];
+	char	*value;
+	char	*tmp;
+	int		ret;
+
+	ret = 0;
+	if (*arg == '$' && *(arg + 1) == '?')
+	{
+		ret = 1;
+		tmp = ft_itoa(get_minish()->signal_is_called);
+		*j = ft_strlcat(buff, tmp, LINE_MAX) - 1;
+		free(tmp);
+	}
+	else if (*arg == '$' && (!*(arg + 1) || *(arg + 1) == ' '))
+		buff[++*j] = *arg;
+	else
+	{
+		ret = get_env_data(key, ++arg);
+		value = find_env(key);
+		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
+	}
+	return (ret);
+}
+
+int			backslash_parse(char *arg, char *buff, int *j, int quotes)
+{
+	int ret;
+
+	ret = 0;
+	if (*arg == '\\' && quotes)
+	{
+		ret = 1;
+		if (ft_is_sep_space("$\'\"\\", arg[1]))
+			buff[++*j] = *(++arg);
+		else
+		{
+			buff[++*j] = *arg;
+			buff[++*j] = *(++arg);
+		}
+	}
+	else if (*arg == '\\')
+	{
+		ret = 1;
+		buff[++*j] = *(++arg);
+	}
+	else
+		buff[++*j] = *arg;
+	return (ret);
+}
+
+char		*parse_quote(char *argv, int i)
+{
+	char	buff[LINE_MAX];
+	int		j;
+
+	j = -1;
+	ft_memset(buff, 0, LINE_MAX);
+	while (argv[++i])
+	{
+		if (argv[i] == '\'')
+			while (argv[++i] != '\'')
+				buff[++j] = argv[i];
+		else if (argv[i] == '\"')
+			while (argv[++i] != '\"')
+				if (argv[i] == '$')
+					i += get_value_dollars_parse(&argv[i], buff, &j);
+				else
+					i += backslash_parse(&argv[i], buff, &j, 1);
+		else
+		{
+			if (argv[i] == '$')
+				i += get_value_dollars_parse(&argv[i], buff, &j);
+			else
+				i += backslash_parse(&argv[i], buff, &j, 0);
+		}
+	}
+	buff[++j] = '\0';
+	return (ft_strdup(buff));
+}
+
+int			handle_dollars_parse(t_cmd *cmd)
+{
+	char	*old_arg;
+	int		i;
+
+	i = -1;
+	while (cmd->argv[++i])
+	{
+		old_arg = cmd->argv[i];
+		cmd->argv[i] = parse_quote(cmd->argv[i], -1);
+		free(old_arg);
+	}
+	if (!check_output(cmd->out))
+		return (0);
+	if (!check_input(cmd->in))
+		return (0);
+	return (1);
+}
