@@ -51,3 +51,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*cpy_ret = '\0';
 	return (ret);
 }
+
+char		*ft_strdup(const char *s1)
+{
+	size_t	i;
+	char	*ret;
+
+	if (!s1)
+		return (0);
+	if (!(ret = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	ret[i] = '\0';
+	return (ret);
+}

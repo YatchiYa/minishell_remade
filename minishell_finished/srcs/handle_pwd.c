@@ -18,7 +18,7 @@ char	*find_env(char *key)
 	env = get_minish()->env;
 	while (env)
 	{
-		if (trim_queue(env->key, key))
+		if (ft_strcmp_v2(env->key, key))
 			return (env->value);
 		env = env->next;
 	}

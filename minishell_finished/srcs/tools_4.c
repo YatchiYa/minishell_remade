@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-static int		pos_word(char *s, char c, unsigned int order)
+int		pos_word(char *s, char c, unsigned int order)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -26,7 +26,7 @@ static int		pos_word(char *s, char c, unsigned int order)
 	return (pos);
 }
 
-static int		count_words(char *s, char c)
+int		count_words(char *s, char c)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -47,7 +47,7 @@ static int		count_words(char *s, char c)
 	return (cnt);
 }
 
-static char		*assign_word(char *s, char c)
+char		*assign_word(char *s, char c)
 {
 	unsigned int	i;
 	unsigned int	len;
@@ -84,5 +84,19 @@ char			**ft_split(char const *s, char c)
 		i++;
 	}
 	ret[i] = 0;
+	return (ret);
+}
+
+char		*ft_strchr(const char *s, int c)
+{
+	char	*ret;
+
+	ret = (char*)s;
+	while (*ret != c)
+	{
+		if (*ret == '\0')
+			return (0);
+		ret++;
+	}
 	return (ret);
 }

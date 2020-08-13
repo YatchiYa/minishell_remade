@@ -17,7 +17,7 @@ int			handle_echo(t_cmd *cmd)
 	int cnt;
 
 	cnt = count_arg(cmd->argv);
-	if (cnt > 2 && trim_queue(cmd->argv[1], "-n"))
+	if (cnt > 2 && ft_strcmp_v2(cmd->argv[1], "-n"))
 		display_echo(cmd->argv, 2, cnt);
 	else
 	{

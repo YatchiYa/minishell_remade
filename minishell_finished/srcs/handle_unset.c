@@ -12,7 +12,7 @@ void		remove_data(char *key)
 	while (tmp)
 	{
 		next = tmp->next;
-		if (trim_queue(tmp->key, key))
+		if (ft_strcmp_v2(tmp->key, key))
 		{
 			if (prev)
 				prev->next = next;

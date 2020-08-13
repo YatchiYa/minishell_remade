@@ -9,7 +9,7 @@ void		add_data(char *key, char *value)
 	env = get_minish()->env;
 	while (env)
 	{
-		if (trim_queue(env->key, key))
+		if (ft_strcmp_v2(env->key, key))
 		{
 			if (env->value && value)
 				free(env->value);
@@ -20,7 +20,7 @@ void		add_data(char *key, char *value)
 		last = env;
 		env = env->next;
 	}
-	last->next = lst_data_new(key, value);
+	last->next = new_data(key, value);
 }
 
 void		printf_env_export(t_env *env)

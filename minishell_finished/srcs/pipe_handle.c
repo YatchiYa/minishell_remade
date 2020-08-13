@@ -40,7 +40,7 @@ void		close_all(int pipes[], int nb)
 		close(pipes[i++]);
 }
 
-void		close_pipe_and_wait(int pipes[], int nb, int cpid[])
+void		close_pipe(int pipes[], int nb, int cpid[])
 {
 	int status;
 	int	i;
@@ -55,7 +55,7 @@ void		close_pipe_and_wait(int pipes[], int nb, int cpid[])
 	get_signal_builtin_cmd(status, NO_EXCODE);
 }
 
-void		set_dups_call(int pipes[], int i, int nb)
+void		dup2_pipes(int pipes[], int i, int nb)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
@@ -82,7 +82,7 @@ t_cmd		*pipe_cmd_call(t_cmd *cmd)
 	{
 		if ((pipe_fd[i] = fork()) == 0)
 		{
-			set_dups_call(pipes, i, nb);
+			dup2_pipes(pipes, i, nb);
 			if ((cmd_result = is_builtin(cmd->argv[0])) != -1)
 				exit(exec_builtin(cmd_result, cmd));
 			exec_non_builtin(cmd);
@@ -92,6 +92,6 @@ t_cmd		*pipe_cmd_call(t_cmd *cmd)
 		cmd = cmd->next;
 		i++;
 	}
-	close_pipe_and_wait(pipes, nb, pipe_fd);
+	close_pipe(pipes, nb, pipe_fd);
 	return (cmd);
 }

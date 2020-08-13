@@ -1,14 +1,14 @@
 
 #include "minishell.h"
 
-t_env		*lst_data_last(t_env *begin)
+t_env		*last_data(t_env *begin)
 {
 	while (begin->next)
 		begin = begin->next;
 	return (begin);
 }
 
-t_env		*lst_data_new(char *key, char *value)
+t_env		*new_data(char *key, char *value)
 {
 	t_env	*new;
 
@@ -19,12 +19,12 @@ t_env		*lst_data_new(char *key, char *value)
 	return (new);
 }
 
-t_env		*lst_data_add(t_env *begin, char *key, char *value)
+t_env		*add(t_env *begin, char *key, char *value)
 {
 	t_env	*last;
 
-	last = lst_data_last(begin);
-	last->next = lst_data_new(key, value);
+	last = last_data(begin);
+	last->next = new_data(key, value);
 	return (begin);
 }
 
@@ -54,7 +54,7 @@ char		**split_data_env(char *s)
 
 void			init_env(char **env)
 {
-	char		**cut;
+	char		**tmp;
 	int			i;
 	t_minish	*minish;
 
@@ -63,14 +63,14 @@ void			init_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		cut = split_data_env(env[i]);
+		tmp = split_data_env(env[i]);
 		if (i == 0)
-			minish->env = lst_data_new(cut[0], cut[1]);
+			minish->env = new_data(tmp[0], tmp[1]);
 		else
-			lst_data_add(minish->env, cut[0], cut[1]);
-		free(cut[0]);
-		free(cut[1]);
-		free(cut);
+			add(minish->env, tmp[0], tmp[1]);
+		free(tmp[0]);
+		free(tmp[1]);
+		free(tmp);
 		i++;
 	}
 }

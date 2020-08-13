@@ -21,7 +21,7 @@ int			is_builtin(char *arg)
 	i = 0;
 	while (BUILTINS[i])
 	{
-		if (trim_queue(BUILTINS[i], arg))
+		if (ft_strcmp_v2(BUILTINS[i], arg))
 			return (i);
 		i++;
 	}

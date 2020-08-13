@@ -13,7 +13,7 @@ char		**get_absolute_path(void)
 	path_env = 0;
 	while (env)
 	{
-		if (trim_queue(env->key, "PATH"))
+		if (ft_strcmp_v2(env->key, "PATH"))
 			path_env = env->value;
 		env = env->next;
 	}

@@ -89,7 +89,7 @@ int			is_point_virgule(char **argv);
 int			is_pipe(char **argv);
 int			is_redirections(char **argv);
 int			is_redir_quote(char *s);
-int			trim_queue(const char *s1, const char *s2);
+int			ft_strcmp_v2(const char *s1, const char *s2);
 t_cmd		*add_cmd(t_cmd *begin, char *token);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s1);
@@ -112,8 +112,7 @@ int			handle_echo(t_cmd *cmd);
 int			handle_pwd(t_cmd *cmd);
 int			handle_export(t_cmd *cmd);
 void		add_data(char *key, char *value);
-t_env		*lst_data_add(t_env *begin, char *key, char *value);
-t_env		*lst_data_new(char *key, char *value);
+t_env		*new_data(char *key, char *value);
 int			handle_unset(t_cmd *cmd);
 int			handle_env(t_cmd *cmd);
 int			handle_exit(t_cmd *cmd);
@@ -137,6 +136,8 @@ void		get_exit_code(int status, int excode);
 int			file_too_long(char *cmd, char *file, int ret);
 t_rdir		*last_rdir(t_rdir *begin);
 void		add_redir_cmd(t_cmd *cmd, char *redir, char *file);
+int			wordcount_arg(char **arr);
+t_rdir		*add_rdir(t_rdir *begin, char *file, int mode);
 
 
 #endif

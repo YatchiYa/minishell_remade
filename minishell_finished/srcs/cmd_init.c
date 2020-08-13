@@ -1,13 +1,18 @@
 
 #include "minishell.h"
 
-int			check_errors_arg(char **argv)
+void		add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 {
-	if (is_redirections(argv)
-		&& is_pipe(argv)
-		&& is_point_virgule(argv))
-		return (1);
-	return (0);
+	t_cmd *last;
+
+	last = last_cmd(cmd);
+	last->is_rdir = 1;
+	if (ft_strcmp_v2(redir, "<"))
+		last->input = add_rdir(last->input, file, 0);
+	else if (ft_strcmp_v2(redir, ">"))
+		last->output = add_rdir(last->output, file, 0);
+	else if (ft_strcmp_v2(redir, ">>"))
+		last->output = add_rdir(last->output, file, 1);
 }
 
 void		add_pip_cmd(t_cmd *cmd)
@@ -16,16 +21,6 @@ void		add_pip_cmd(t_cmd *cmd)
 
 	last = last_cmd(cmd);
 	last->is_pipe = 1;
-}
-
-int			wordcount_arg(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
 }
 
 void		add_argv_cmd(t_cmd *cmd, char *arg)
@@ -66,11 +61,11 @@ int			init_cmd(char **argv)
 	{
 		if (ret && !(ret = 0))
 			minish->cmd = add_cmd(minish->cmd, argv[i]);
-		else if (trim_queue(argv[i], "|") && (ret = 1))
+		else if (ft_strcmp_v2(argv[i], "|") && (ret = 1))
 			add_pip_cmd(minish->cmd);
 		else if (is_redir_quote(argv[i]) && (i++))
 			add_redir_cmd(minish->cmd, argv[i - 1], argv[i]);
-		else if (trim_queue(argv[i], ";") && (ret = 1) && (i++))
+		else if (ft_strcmp_v2(argv[i], ";") && (ret = 1) && (i++))
 			continue;
 		else
 			add_argv_cmd(minish->cmd, argv[i]);

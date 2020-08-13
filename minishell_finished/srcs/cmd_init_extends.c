@@ -1,37 +1,23 @@
 
 #include "minishell.h"
 
-char		*ft_strdup(const char *s1)
+int			check_errors_arg(char **argv)
 {
-	size_t	i;
-	char	*ret;
-
-	if (!s1)
-		return (0);
-	if (!(ret = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		ret[i] = s1[i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
+	if (is_redirections(argv)
+		&& is_pipe(argv)
+		&& is_point_virgule(argv))
+		return (1);
+	return (0);
 }
 
-char		*ft_strchr(const char *s, int c)
+int			wordcount_arg(char **arr)
 {
-	char	*ret;
+	int i;
 
-	ret = (char*)s;
-	while (*ret != c)
-	{
-		if (*ret == '\0')
-			return (0);
-		ret++;
-	}
-	return (ret);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
 t_cmd		*create_cmd(char *data)

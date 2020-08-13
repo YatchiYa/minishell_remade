@@ -30,17 +30,3 @@ t_rdir		*add_rdir(t_rdir *begin, char *file, int mode)
 	last->next = new_rdir(file, mode);
 	return (begin);
 }
-
-void		add_redir_cmd(t_cmd *cmd, char *redir, char *file)
-{
-	t_cmd *last;
-
-	last = last_cmd(cmd);
-	last->is_rdir = 1;
-	if (trim_queue(redir, "<"))
-		last->input = add_rdir(last->input, file, 0);
-	else if (trim_queue(redir, ">"))
-		last->output = add_rdir(last->output, file, 0);
-	else if (trim_queue(redir, ">>"))
-		last->output = add_rdir(last->output, file, 1);
-}

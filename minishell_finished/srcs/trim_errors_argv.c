@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-int	trim_queue(const char *s1, const char *s2)
+int	ft_strcmp_v2(const char *s1, const char *s2)
 {
 	if (!ft_strcmp(s1, s2))
 		return (1);
@@ -10,11 +10,11 @@ int	trim_queue(const char *s1, const char *s2)
 
 int		is_redir_quote(char *s)
 {
-	if (trim_queue(s, "<"))
+	if (ft_strcmp_v2(s, "<"))
 		return (1);
-	if (trim_queue(s, ">"))
+	if (ft_strcmp_v2(s, ">"))
 		return (1);
-	if (trim_queue(s, ">>"))
+	if (ft_strcmp_v2(s, ">>"))
 		return (1);
 	return (0);
 }
@@ -35,8 +35,8 @@ int		is_redirections(char **argv)
 				return (syntax_error(argv[i], 0));
 		}
 		else if (fredi == 1 &&
-			(trim_queue(argv[i], "|")
-			|| trim_queue(argv[i], ";")))
+			(ft_strcmp_v2(argv[i], "|")
+			|| ft_strcmp_v2(argv[i], ";")))
 			return (syntax_error(argv[i], 0));
 		else
 			fredi = 0;
@@ -56,7 +56,7 @@ int		is_pipe(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (trim_queue(argv[i], "|"))
+		if (ft_strcmp_v2(argv[i], "|"))
 		{
 			if (i == 0)
 				return (syntax_error("|", 0));
@@ -65,13 +65,13 @@ int		is_pipe(char **argv)
 				return (syntax_error("|", 0));
 		}
 		else if (fpip == 1 &&
-			(is_redir_quote(argv[i]) || trim_queue(argv[i], ";")))
+			(is_redir_quote(argv[i]) || ft_strcmp_v2(argv[i], ";")))
 			return (syntax_error(argv[i], 0));
 		else
 			fpip = 0;
 		i++;
 	}
-	if (i != 0 && trim_queue(argv[i - 1], "|"))
+	if (i != 0 && ft_strcmp_v2(argv[i - 1], "|"))
 		return (syntax_error("|", 0));
 	return (1);
 }
@@ -85,7 +85,7 @@ int		is_point_virgule(char **argv)
 	fsemi = 0;
 	while (argv[i])
 	{
-		if (trim_queue(argv[i], ";"))
+		if (ft_strcmp_v2(argv[i], ";"))
 		{
 			if (i == 0)
 				return (syntax_error(";", 0));
