@@ -28,7 +28,6 @@ void	display_prompt_msg(void)
 {
 	char	*cwd;
 	char	*buff;
-	char	*parsed_cwd;
 	int		ret;
 	int		i;
 

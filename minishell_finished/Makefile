@@ -22,14 +22,12 @@ SRC = 	srcs/cmd_init.c	\
 		srcs/handle_pwd.c	\
 		srcs/handle_unset.c	\
 		srcs/main.c	\
-		srcs/minishell.h	\
 		srcs/parse_dollars_2.c	\
 		srcs/pipe_handle.c	\
 		srcs/prompt.c	\
 		srcs/redirect_config.c	\
 		srcs/redirections.c	\
 		srcs/tools.c	\
-		srcs/tools.h	\
 		srcs/tools_2.c	\
 		srcs/tools_3.c	\
 		srcs/tools_4.c	\
@@ -38,12 +36,12 @@ SRC = 	srcs/cmd_init.c	\
 
 OBJS = $(SRC:.c=.o)
 
-HEADER = srcs/minishell.h
+HEADER = srcs
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(FLAGS) $(SRC) -o minishell
+	$(CC) $(FLAGS) -I $(HEADER) $(SRC) -o minishell
 
 clean:
 	rm -rf $(OBJS)

@@ -25,12 +25,6 @@ void		free_all(void)
 	free_env();
 }
 
-void		prompt_msg(void)
-{
-	if (get_minish()->is_end_of_file == 0)
-		ft_putstr("\033[32mMINISHELL\033[0m$ ");
-}
-
 void		signal_handler(int signo)
 {
 	if (signo == SIGINT)
@@ -44,7 +38,7 @@ void		signal_handler(int signo)
 		{
 			ft_putstr("\n");
 			get_minish()->is_end_of_file = 0;
-			prompt_msg();
+			display_prompt_msg();
 			get_minish()->signal_is_called = 1;
 		}
 	}
@@ -58,7 +52,7 @@ void		signal_handler(int signo)
 	}
 }
 
-int			main(int ac, char **av, char **env)
+int			main(int argc, char **argv, char **env)
 {
 	init_env(env);
 	system("clear");
@@ -80,5 +74,7 @@ int			main(int ac, char **av, char **env)
 		exec_command();
 		free_1();
 	}
+	(void)(argc);
+	(void) argv;
 	return (0);
 }

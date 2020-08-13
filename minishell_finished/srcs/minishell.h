@@ -40,9 +40,6 @@
 # define CMD_UNSET "echo"
 # define CMD_UNSET "echo"
 
-static char *BUILTINS[] = {"echo", "cd", "pwd", "export",
-							"unset", "env", "exit", NULL};
-
 typedef struct		s_env
 {
 	char			*key;

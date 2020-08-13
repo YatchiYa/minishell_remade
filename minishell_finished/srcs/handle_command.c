@@ -12,6 +12,9 @@
 
 #include "minishell.h"
 
+static char *BUILTINS[] = {"echo", "cd", "pwd", "export",
+							"unset", "env", "exit", NULL};
+							
 void		get_signal_builtin_cmd(int status, int signo)
 {
 	if (signo == -1)
