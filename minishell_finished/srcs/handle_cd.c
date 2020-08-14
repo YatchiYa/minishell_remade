@@ -24,6 +24,8 @@ int			exec_old_path(char *path)
 			ft_putstr("error OLDPWD");
 			return (-1);
 		}
+		ft_putstr(old);
+		ft_putstr("\n");
 		add_data("OLDPWD", path);
 	}
 	else

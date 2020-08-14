@@ -12,6 +12,12 @@
 
 #include "minishell.h"
 
+void		prompt_msg(void)
+{
+	if (get_minish()->is_end_of_file == 0)
+		display_prompt_msg();
+}
+
 t_minish	*get_minish(void)
 {
 	static t_minish	minish;
@@ -38,7 +44,7 @@ void		signal_handler(int signo)
 		{
 			ft_putstr("\n");
 			get_minish()->is_end_of_file = 0;
-			display_prompt_msg();
+			prompt_msg();
 			get_minish()->signal_is_called = 1;
 		}
 	}
@@ -54,6 +60,8 @@ void		signal_handler(int signo)
 
 int			main(int argc, char **argv, char **env)
 {
+	if (!argc || !argv || !env)
+		return (0);
 	init_env(env);
 	system("clear");
 	ft_putstr(" \033[31mWelcome\033[0m\033[32mTo\033[0m\033[33m << ");
@@ -62,7 +70,7 @@ int			main(int argc, char **argv, char **env)
 	signal(SIGQUIT, signal_handler);
 	while (1)
 	{
-		display_prompt_msg();
+		prompt_msg();
 		if (!ft_getline())
 			continue ;
 		if (!init_cmd(get_minish()->argv))
@@ -73,7 +81,5 @@ int			main(int argc, char **argv, char **env)
 		exec_command();
 		free_1();
 	}
-	(void)(argc);
-	(void)argv;
 	return (0);
 }
