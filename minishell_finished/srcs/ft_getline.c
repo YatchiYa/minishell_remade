@@ -120,6 +120,14 @@ int			ft_getline(void)
 		if (!current_line())
 			return (0);
 	}
+	if (minish->line[0] == '>' ||
+		(minish->line[1] && minish->line[0] == '"' && minish->line[1] == '>') ||
+		(minish->line[1] && minish->line[0] == '\'' && minish->line[1] == '>'))
+		minish->line = ft_strjoin("cat ", minish->line);
+	if (minish->line[0] == '<' ||
+		(minish->line[1] && minish->line[0] == '"' && minish->line[1] == '<') ||
+		(minish->line[1] && minish->line[0] == '\'' && minish->line[1] == '<'))
+		minish->line = ft_strjoin("less ", minish->line);
 	minish->argv = ft_split_arguments(minish->line);
 	if (!minish->argv)
 		error_minishell();

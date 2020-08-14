@@ -8,8 +8,8 @@ SRC = 	srcs/cmd_init.c	\
 		srcs/cmd_init_extends.c	\
 		srcs/env_init.c	\
 		srcs/env_init_extends.c	\
-		srcs/exit_1.c	\
-		srcs/exit_2.c	\
+		srcs/free_fct.c	\
+		srcs/exit_minishell.c	\
 		srcs/ft_getline.c	\
 		srcs/get_next_line.c	\
 		srcs/handle_cd.c	\
