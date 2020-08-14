@@ -42,9 +42,13 @@ int			is_builtin(char *arg)
 	while (builtins[i])
 	{
 		if (ft_strcmp_v2(builtins[i], arg))
+		{
+			free_tab(builtins);
 			return (i);
+		}
 		i++;
 	}
+	free_tab(builtins);
 	return (-1);
 }
 

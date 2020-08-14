@@ -31,5 +31,6 @@ char				*ft_strjoin(char const *s1, char const *s2);
 int					ft_strcmp(const char *s1, const char *s2);
 char				**ft_split(char const *s, char c);
 int					get_next_line(int fd, char **line);
+void				free_tab(char *str[8]);
 
 #endif

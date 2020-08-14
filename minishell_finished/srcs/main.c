@@ -58,7 +58,6 @@ int			main(int argc, char **argv, char **env)
 	system("clear");
 	ft_putstr(" \033[31mWelcome\033[0m\033[32mTo\033[0m\033[33m << ");
 	ft_putstr("\033[0m\033[34mMinishell\033[0m\033[35m >>\033[0m \n");
-	add_data("OLDPWD", NULL);
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	while (1)

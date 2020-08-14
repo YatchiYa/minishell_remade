@@ -14,23 +14,19 @@
 
 char			*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char *ptr;
-	char *ret;
-	char *cpy_ret;
+	char	*substr;
+	size_t	i;
 
-	if (!s || !(ret = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	if (start > ft_strlen(s))
-		ret[0] = '\0';
-	else
+	i = 0;
+	if (!s || !(substr = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	while (i < len && s[i + start] && !(start > ft_strlen(s)))
 	{
-		ptr = (char *)s + start;
-		cpy_ret = ret;
-		while (*ptr && len-- > 0)
-			*cpy_ret++ = *ptr++;
-		*cpy_ret = '\0';
+		substr[i] = s[i + start];
+		i++;
 	}
-	return (ret);
+	substr[i] = '\0';
+	return (substr);
 }
 
 int				ft_atoi(const char *str)

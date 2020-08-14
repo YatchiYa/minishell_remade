@@ -12,16 +12,32 @@
 
 #include "minishell.h"
 
+void	free_tab(char *str[8])
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+}
+
 void	display(char *cwd, int i)
 {
+	char		*tmp;
+
 	cwd = ft_strsub(cwd, i, ft_strlen(cwd));
-	cwd = ft_strjoin("~", cwd);
+	tmp = ft_strjoin("~", cwd);
 	ft_putstr(" \033[31m");
-	ft_putstr(cwd);
+	ft_putstr(tmp);
 	ft_putstr("\033[0m");
 	ft_putstr("\033[32m");
 	ft_putstr("$ ");
 	ft_putstr("\033[0m");
+	free(cwd);
+	free(tmp);
 }
 
 void	display_ext(int ret, char *cwd, int i)
@@ -41,14 +57,11 @@ void	display_ext(int ret, char *cwd, int i)
 
 void	display_prompt_msg(void)
 {
-	char	*cwd;
-	char	*buff;
+	char	cwd[PATH_MAX];
 	int		ret;
 	int		i;
 
-	if (!(buff = malloc(sizeof(char) * 4097)))
-		return ;
-	cwd = getcwd(buff, 4096);
+	getcwd(cwd, 4096);
 	ret = 0;
 	i = 0;
 	while (cwd[i] && ret < 3)
@@ -58,5 +71,4 @@ void	display_prompt_msg(void)
 		i++;
 	}
 	display_ext(ret, cwd, i);
-	free(buff);
 }

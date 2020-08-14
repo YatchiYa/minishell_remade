@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 char		*ft_split_arguments_extends(char *line, int index,
 				int start, int count)
@@ -71,7 +73,6 @@ int			previous_line_is_eof(void)
 		error_minishell();
 	if (minish->is_end_of_file)
 		free(previous_line);
-	free(new_line);
 	if (minish->ret > 0)
 		minish->is_end_of_file = 0;
 	if (minish->ret == 0)

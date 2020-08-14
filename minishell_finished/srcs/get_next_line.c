@@ -12,77 +12,75 @@
 
 #include "minishell.h"
 
-int			free_all_lines(char **str)
+int		free_all_lines(char **str)
 {
 	if (*str)
 	{
 		free(*str);
 		*str = NULL;
 	}
+	str = NULL;
 	return (-1);
 }
 
-int			is_line(char *str)
+int		ft_line_break(char *stock)
 {
-	int i;
-
-	i = -1;
-	while (str[++i])
-		if (str[i] == '\n')
-			return (i);
-	return (-1);
+	while (*stock)
+		if (*(stock++) == '\n')
+			return (1);
+	return (0);
 }
 
-int			give_line(char **str, char **line, int ret)
+void	ft_fill_static(char **stock, char *buff)
 {
-	char	*s;
-	int		len;
+	char	*to_free;
 
-	s = NULL;
-	if (!*str || !**str)
+	to_free = *stock;
+	*stock = strdup(buff);
+	free(to_free);
+	free(buff);
+}
+
+int		ft_read_file(char **stock, int fd)
+{
+	char		*buffer;
+	int			ret;
+
+	if (!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1)))
+	|| read(fd, buffer, 0) < 0)
+		return (-1);
+	if (*stock == NULL)
+		*stock = strdup("");
+	while (!ft_line_break(*stock) && (ret = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		if (!(*line = ft_strdup("\0")))
-			return (free_all_lines(str));
+		buffer[ret] = '\0';
+		ft_fill_static(stock, ft_strjoin(*stock, buffer));
 	}
-	else if ((len = is_line(*str)) >= 0)
-	{
-		if (!(*line = ft_strsub(*str, 0, len)))
-			return (free_all_lines(str));
-		if (!(s = ft_strsub(*str, len + 1, ft_strlen(*str) - len + 1)))
-			return (free_all_lines(str));
-		ret = 1;
-	}
-	else
-	{
-		if (!(*line = ft_strsub(*str, 0, ft_strlen(*str))))
-			return (free_all_lines(str));
-	}
-	free_all_lines(str);
-	*str = s;
+	free(buffer);
 	return (ret);
 }
 
-int			get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	char		*str;
-	char		buff[BUFFER_SIZE + 1];
-	char		*new_str;
-	ssize_t		i;
+	static char		*stock[55];
+	int				ret;
+	int				i;
 
-	str = NULL;
-	if (!line || fd < 0)
-		return (free_all_lines(&str));
-	while ((i = read(fd, buff, BUFFER_SIZE)) > 0)
+	if (BUFFER_SIZE < 1 || fd < 0 || fd > 55 || line == NULL
+	|| (ret = ft_read_file(&stock[fd], fd)) < 0)
+		return (-1);
+	i = 0;
+	while (stock[fd][i] != '\n' && stock[fd][i])
+		i++;
+	*line = ft_strsub(stock[fd], 0, i);
+	if ((ret == 0 && ft_strlen(stock[fd]) > ft_strlen(*line)) || ret > 0)
+		ret = 1;
+	ft_fill_static(&stock[fd],
+			ft_strsub(stock[fd], ++i, ft_strlen(stock[fd])));
+	if (ret <= 0)
 	{
-		buff[i] = '\0';
-		if (!(new_str = ft_strjoin(str, buff)))
-			return (free_all_lines(&str));
-		free_all_lines(&str);
-		str = new_str;
-		if (is_line(str) >= 0)
-			break ;
+		free(stock[fd]);
+		stock[fd] = NULL;
 	}
-	if (i < 0)
-		return (free_all_lines(&str));
-	return (give_line(&str, line, 0));
+	return (ret);
 }

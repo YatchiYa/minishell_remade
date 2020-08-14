@@ -45,23 +45,25 @@ int			ft_strcmp(const char *s1, const char *s2)
 
 char		*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ret;
-	char	*cpy_ret;
+	size_t	total_len;
+	size_t	s1_len;
+	size_t	i;
+	char	*str;
 
-	if (!s1 && !s2)
-		return (0);
-	ret = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!ret)
-		return (0);
-	cpy_ret = ret;
-	if (s1)
-		while (*s1 != '\0')
-			*cpy_ret++ = *s1++;
-	if (s2)
-		while (*s2 != '\0')
-			*cpy_ret++ = *s2++;
-	*cpy_ret = '\0';
-	return (ret);
+	if (!s1 || !s2)
+		return (NULL);
+	total_len = ft_strlen(s1) + ft_strlen(s2);
+	s1_len = ft_strlen(s1);
+	if (!(str = malloc(sizeof(char) * (total_len + 1))))
+		return (NULL);
+	i = 0;
+	while (i < total_len)
+	{
+		str[i] = (i < s1_len) ? s1[i] : s2[i - s1_len];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
 char		*ft_strdup(const char *s1)
