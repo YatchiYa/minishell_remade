@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		trim_space(char *line, int i, int jmp)
-{
-	i += jmp;
-	while (line[i] == ' ' || line[i] == '\t')
-	{
-		i++;
-		jmp++;
-	}
-	return (jmp);
-}
 
 int		trim_backslash(char *line, int *i, char quote)
 {
@@ -33,7 +22,6 @@ int		trim_backslash(char *line, int *i, char quote)
 		return (0);
 	return (1);
 }
-
 
 int		trim_quote(char *line, int i)
 {

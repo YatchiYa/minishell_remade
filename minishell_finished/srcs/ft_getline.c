@@ -12,15 +12,12 @@
 
 #include "minishell.h"
 
-char		*ft_split_arguments_extends(char *line, int index)
+char		*ft_split_arguments_extends(char *line, int index,
+				int start, int count)
 {
 	int i;
-	int start;
-	int count;
 
 	i = 0;
-	start = 0;
-	count = 0;
 	while (line[i])
 	{
 		if (!ft_is_sep_space(SEP_SPACE, line[i]) && line[i] && ++count)
@@ -33,7 +30,10 @@ char		*ft_split_arguments_extends(char *line, int index)
 		}
 		if (ft_is_sep_space(SEP, line[i]) && ++count)
 			if (count == index)
-				return (ft_strsub(line, start, i + check_sep(line, i, 1) - start));
+			{
+				return (ft_strsub(line, start,
+						i + check_sep(line, i, 1) - start));
+			}
 		i += check_sep(line, i, 2);
 		start = i;
 	}
@@ -51,7 +51,7 @@ char		**ft_split_arguments(char *line)
 	if (!(argv = (char **)malloc(sizeof(char *) * (count + 1))))
 		return (NULL);
 	while (++i < count)
-		argv[i] = ft_split_arguments_extends(line, i + 1);
+		argv[i] = ft_split_arguments_extends(line, i + 1, 0, 0);
 	argv[i] = NULL;
 	return (argv);
 }

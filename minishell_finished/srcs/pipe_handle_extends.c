@@ -12,43 +12,18 @@
 
 #include "minishell.h"
 
-int		count_arg(char **argv)
+int			nb_pipes(t_cmd *cmd_list)
 {
 	int i;
 
 	i = 0;
-	while (argv[i])
-		i++;
+	while (cmd_list)
+	{
+		if (cmd_list->is_pipe)
+			i++;
+		else
+			break ;
+		cmd_list = cmd_list->next;
+	}
 	return (i);
-}
-
-char	*find_env(char *key)
-{
-	t_env	*env;
-
-	env = get_minish()->env;
-	while (env)
-	{
-		if (ft_strcmp_v2(env->key, key))
-			return (env->value);
-		env = env->next;
-	}
-	return (NULL);
-}
-
-int		handle_pwd(t_cmd *cmd)
-{
-	char cwd[PATH_MAX];
-
-	(void)cmd;
-	if (!(getcwd(cwd, sizeof(cwd))))
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd("\n", 2);
-		return (EXIT_FAILURE);
-	}
-	ft_putstr(cwd);
-	ft_putstr("\n");
-	return (EXIT_SUCCESS);
 }

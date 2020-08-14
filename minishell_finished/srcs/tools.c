@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			assign_num(unsigned int num, char *ptr)
 	}
 }
 
-char				*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	char			*ret;
 	unsigned int	cnt;

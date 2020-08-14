@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ int				check_output(t_rdir *output_file)
 		output_file->file_io = parse_quote(output_file->file_io, -1);
 		free(old_file);
 		if (output_file->over_write)
-			output_file->fd = open(output_file->file_io, O_WRONLY | O_APPEND | O_CREAT, S_IRUSR
+			output_file->fd = open(output_file->file_io,
+			O_WRONLY | O_APPEND | O_CREAT, S_IRUSR
 				| S_IRGRP | S_IWGRP | S_IWUSR);
 		else
-			output_file->fd = open(output_file->file_io, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR
+			output_file->fd = open(output_file->file_io,
+			O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR
 				| S_IRGRP | S_IWGRP | S_IWUSR);
 		if (output_file->fd < 0)
 			return (0);

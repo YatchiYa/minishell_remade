@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		pos_word(char *s, char c, unsigned int order)
+int			pos_word(char *s, char c, unsigned int order)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -37,7 +37,7 @@ int		pos_word(char *s, char c, unsigned int order)
 	return (pos);
 }
 
-int		count_words(char *s, char c)
+int			count_words(char *s, char c)
 {
 	int				is_word;
 	unsigned int	cnt;
@@ -75,7 +75,7 @@ char		*assign_word(char *s, char c)
 	return (ret);
 }
 
-char			**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
 	unsigned int	nb;
 	unsigned int	i;

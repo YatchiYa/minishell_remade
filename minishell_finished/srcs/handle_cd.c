@@ -58,7 +58,7 @@ int			handle_cd(t_cmd *cmd)
 	int		cnt;
 	char	*value;
 	char	*path;
-	
+
 	cnt = count_arg(cmd->argv);
 	path = getcwd(cwd, sizeof(cwd));
 	if (cnt == 1)

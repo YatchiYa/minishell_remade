@@ -12,9 +12,6 @@
 
 #include "minishell.h"
 
-static char *BUILTINS[] = {"echo", "cd", "pwd", "export",
-							"unset", "env", "exit", NULL};
-							
 void		get_signal_builtin_cmd(int status, int signo)
 {
 	if (signo == -1)
@@ -31,11 +28,20 @@ void		get_signal_builtin_cmd(int status, int signo)
 int			is_builtin(char *arg)
 {
 	int		i;
+	char	*builtins[8];
 
+	builtins[0] = ft_strdup("echo");
+	builtins[1] = ft_strdup("cd");
+	builtins[2] = ft_strdup("pwd");
+	builtins[3] = ft_strdup("export");
+	builtins[4] = ft_strdup("unset");
+	builtins[5] = ft_strdup("env");
+	builtins[6] = ft_strdup("exit");
+	builtins[7] = NULL;
 	i = 0;
-	while (BUILTINS[i])
+	while (builtins[i])
 	{
-		if (ft_strcmp_v2(BUILTINS[i], arg))
+		if (ft_strcmp_v2(builtins[i], arg))
 			return (i);
 		i++;
 	}

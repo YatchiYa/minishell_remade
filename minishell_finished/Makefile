@@ -32,6 +32,8 @@ SRC = 	srcs/cmd_init.c	\
 		srcs/tools_3.c	\
 		srcs/tools_4.c	\
 		srcs/trim_errors_argv.c	\
+		srcs/trim_parse_ext.c	\
+		srcs/pipe_handle_extends.c	\
 		srcs/trim_parse.c
 
 OBJS = $(SRC:.c=.o)

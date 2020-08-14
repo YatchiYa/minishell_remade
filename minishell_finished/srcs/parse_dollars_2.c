@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char		*parse_quote(char *argv, int i)
 	j = -1;
 	ft_memset(buff, 0, LINE_MAX);
 	while (argv[++i])
-	{
 		if (argv[i] == '\'')
 			while (argv[++i] != '\'')
 				buff[++j] = argv[i];
@@ -103,7 +102,6 @@ char		*parse_quote(char *argv, int i)
 			else
 				i += backslash_parse(&argv[i], buff, &j, 0);
 		}
-	}
 	buff[++j] = '\0';
 	return (ft_strdup(buff));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,73 +79,73 @@ typedef struct		s_minish
 	int				ret;
 }					t_minish;
 
-t_minish	*get_minish(void);
-void		init_env(char **env);
-int			ft_getline(void);
-void		display_prompt_msg(void);
-int			ft_is_sep_space(const char *s, char c);
-int			check_sep(char *line, int i, int use);
-int			trim_quote(char *line, int i);
-char		*check_quote(char *tk, int i);
-int			check_errors_arg(char **argv);
-int			word_str_count(char *line);
-int			trim_space(char *line, int i, int jmp);
-int			jmp_quotes(char *line, int i);
-int			init_cmd(char **argv);
-int			check_errors_arg(char **argv);
-int			is_point_virgule(char **argv);
-int			is_pipe(char **argv);
-int			is_redirections(char **argv);
-int			is_redir_quote(char *s);
-int			ft_strcmp_v2(const char *s1, const char *s2);
-t_cmd		*add_cmd(t_cmd *begin, char *token);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strdup(const char *s1);
-t_cmd		*last_cmd(t_cmd *cmd);
-t_cmd		*create_cmd(char *data);
-void		free_1(void);
-t_cmd		*pipe_cmd_call(t_cmd *cmd);
-int			is_builtin(char *arg);
-void		get_signal_builtin_cmd(int status, int signo);
-int			handle_dollars_parse(t_cmd *cmd);
-size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
-int			check_output(t_rdir *out);
-int			check_dollar(t_cmd *cmd);
-int			check_input(t_rdir *in);
-char		*parse_quote(char *argv, int i);
-void		set_redirect_dup2(t_cmd *cmd);
-void		close_redirect_dup2(t_cmd *cmd);
-int			exec_builtin(int btin_nb, t_cmd *cmd);
-int			handle_echo(t_cmd *cmd);
-int			handle_pwd(t_cmd *cmd);
-int			handle_export(t_cmd *cmd);
-void		add_data(char *key, char *value);
-t_env		*new_data(char *key, char *value);
-int			handle_unset(t_cmd *cmd);
-int			handle_env(t_cmd *cmd);
-int			handle_exit(t_cmd *cmd);
-char		*find_env(char *key);
-int			handle_cd(t_cmd *cmd);
-void		free_env(void);
-void		free_all(void);
-void		free_line(void);
-int			count_arg(char **argv);
-void		exec_non_builtin(t_cmd *cmd);
-char		**get_env_full(t_env *env);
-void		free_env_2(char **env);
-void		error_minishell(void);
-int			error_commande(char *cmd, int ret);
-int			syntax_error(char *token, int ret);
-int			no_file_error(char *cmd, char *file, int ret);
-int			too_many_arg_error(char *cmd, int ret);
-void		exec_command(void);
-void		eof_exit(void);
-void		get_exit_code(int status, int excode);
-int			file_too_long(char *cmd, char *file, int ret);
-t_rdir		*last_rdir(t_rdir *begin);
-void		add_redir_cmd(t_cmd *cmd, char *redir, char *file);
-int			wordcount_arg(char **arr);
-t_rdir		*add_rdir(t_rdir *begin, char *file, int mode);
-
+t_minish			*get_minish(void);
+void				init_env(char **env);
+int					ft_getline(void);
+void				display_prompt_msg(void);
+int					ft_is_sep_space(const char *s, char c);
+int					check_sep(char *line, int i, int use);
+int					trim_quote(char *line, int i);
+char				*check_quote(char *tk, int i);
+int					check_errors_arg(char **argv);
+int					word_str_count(char *line);
+int					trim_space(char *line, int i, int jmp);
+int					jmp_quotes(char *line, int i);
+int					init_cmd(char **argv);
+int					check_errors_arg(char **argv);
+int					is_point_virgule(char **argv);
+int					is_pipe(char **argv);
+int					is_redirections(char **argv);
+int					is_redir_quote(char *s);
+int					ft_strcmp_v2(const char *s1, const char *s2);
+t_cmd				*add_cmd(t_cmd *begin, char *token);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strdup(const char *s1);
+t_cmd				*last_cmd(t_cmd *cmd);
+t_cmd				*create_cmd(char *data);
+void				free_1(void);
+t_cmd				*pipe_cmd_call(t_cmd *cmd);
+int					is_builtin(char *arg);
+void				get_signal_builtin_cmd(int status, int signo);
+int					handle_dollars_parse(t_cmd *cmd);
+size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
+int					check_output(t_rdir *out);
+int					check_dollar(t_cmd *cmd);
+int					check_input(t_rdir *in);
+char				*parse_quote(char *argv, int i);
+void				set_redirect_dup2(t_cmd *cmd);
+void				close_redirect_dup2(t_cmd *cmd);
+int					exec_builtin(int btin_nb, t_cmd *cmd);
+int					handle_echo(t_cmd *cmd);
+int					handle_pwd(t_cmd *cmd);
+int					handle_export(t_cmd *cmd);
+void				add_data(char *key, char *value);
+t_env				*new_data(char *key, char *value);
+int					handle_unset(t_cmd *cmd);
+int					handle_env(t_cmd *cmd);
+int					handle_exit(t_cmd *cmd);
+char				*find_env(char *key);
+int					handle_cd(t_cmd *cmd);
+void				free_env(void);
+void				free_all(void);
+void				free_line(void);
+int					count_arg(char **argv);
+void				exec_non_builtin(t_cmd *cmd);
+char				**get_env_full(t_env *env);
+void				free_env_2(char **env);
+void				error_minishell(void);
+int					error_commande(char *cmd, int ret);
+int					syntax_error(char *token, int ret);
+int					no_file_error(char *cmd, char *file, int ret);
+int					too_many_arg_error(char *cmd, int ret);
+void				exec_command(void);
+void				eof_exit(void);
+void				get_exit_code(int status, int excode);
+int					file_too_long(char *cmd, char *file, int ret);
+t_rdir				*last_rdir(t_rdir *begin);
+void				add_redir_cmd(t_cmd *cmd, char *redir, char *file);
+int					wordcount_arg(char **arr);
+t_rdir				*add_rdir(t_rdir *begin, char *file, int mode);
+int					nb_pipes(t_cmd *cmd_list);
 
 #endif

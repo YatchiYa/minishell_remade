@@ -63,7 +63,7 @@ char		**split_data_env(char *s)
 	return (res);
 }
 
-void			init_env(char **env)
+void		init_env(char **env)
 {
 	char		**tmp;
 	int			i;

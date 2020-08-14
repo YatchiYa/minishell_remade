@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pray <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pray <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/21 14:13:46 by pray             #+#    #+#             */
-/*   Updated: 2020/02/21 14:13:49 by pray            ###   ########.fr       */
+/*   Created: 2020/02/21 14:13:46 by pray              #+#    #+#             */
+/*   Updated: 2020/02/21 14:13:49 by pray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int			nb_pipes(t_cmd *cmd_list)
-{
-	int i;
-
-	i = 0;
-	while (cmd_list)
-	{
-		if (cmd_list->is_pipe)
-			i++;
-		else
-			break ;
-		cmd_list = cmd_list->next;
-	}
-	return (i);
-}
 
 int			init_pipes(int pipes[], int nb)
 {
@@ -55,7 +39,7 @@ void		close_pipe(int pipes[], int nb, int cpid[])
 {
 	int status;
 	int	i;
-	
+
 	close_all(pipes, nb);
 	i = 0;
 	while (i < nb + 1)
@@ -88,8 +72,8 @@ t_cmd		*pipe_cmd_call(t_cmd *cmd)
 	nb = nb_pipes(cmd);
 	if (!init_pipes(pipes, nb))
 		return (0);
-	i = 0;
-	while (i < (nb + 1))
+	i = -1;
+	while (++i < (nb + 1))
 	{
 		if ((pipe_fd[i] = fork()) == 0)
 		{
@@ -101,7 +85,6 @@ t_cmd		*pipe_cmd_call(t_cmd *cmd)
 		else if (pipe_fd[i] == -1)
 			error_minishell();
 		cmd = cmd->next;
-		i++;
 	}
 	close_pipe(pipes, nb, pipe_fd);
 	return (cmd);

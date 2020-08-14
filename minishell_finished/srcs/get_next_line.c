@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static int			free_all_lines(char **str)
+int			free_all_lines(char **str)
 {
 	if (*str)
 	{
@@ -22,7 +22,7 @@ static int			free_all_lines(char **str)
 	return (-1);
 }
 
-static int			is_line(char *str)
+int			is_line(char *str)
 {
 	int i;
 
@@ -33,7 +33,7 @@ static int			is_line(char *str)
 	return (-1);
 }
 
-static int			give_line(char **str, char **line, int ret)
+int			give_line(char **str, char **line, int ret)
 {
 	char	*s;
 	int		len;
@@ -64,11 +64,12 @@ static int			give_line(char **str, char **line, int ret)
 
 int			get_next_line(int fd, char **line)
 {
-	static char	*str = NULL;
+	char		*str;
 	char		buff[BUFFER_SIZE + 1];
 	char		*new_str;
 	ssize_t		i;
 
+	str = NULL;
 	if (!line || fd < 0)
 		return (free_all_lines(&str));
 	while ((i = read(fd, buff, BUFFER_SIZE)) > 0)
