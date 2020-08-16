@@ -1,0 +1,225 @@
+xxxx        echo
+
+echo simple
+echo -n simple
+echo simple text
+echo $PATH
+echo "$PATH"
+echo '$PATH'
+echo '\'
+echo "\\"
+echo "\n \n \n"
+echo "\n \\n \\\n"
+echo hi; echo hihi;
+echo ;;	
+echo hi";" hihi
+echo hi "   ;   " hihi
+echo one; echo two; echo three;
+
+XXXX        cd
+
+cd
+cd .
+cd ..
+cd ~
+cd 
+cd no_file
+cd a b c d
+pwd
+pwd
+pwd a
+pwd a b c d 
+
+XXXX export && env && unset
+
+export
+export LOL	
+export LOL=lol	
+export LOL	 
+unset LOL
+export LOL=lala ROR=rara  
+unset LOL ROR
+export "HI= hi"
+export "HI =hi"  
+
+XXXX non built-in command
+
+binls
+/bin/ls
+ls
+ls -al
+clear
+whoami
+
+XXXX pipe
+
+| echo
+echo | | echo
+
+XXXX redirection
+
+cat < >	
+cat < <
+cat < Makefile > test1 > test2
+cat < no_file > test1 > test2
+cat < no_file > test1 echo asdf
+
+XXXX pipe & redirection
+
+cat < Makefile | grep gcc > output
+cat < nofile | grep gcc > output
+
+
+XXXX Commandes valides et basiques
+
+/bin/ls
+/bin/echo -n \"Hello\"
+/bin/echo -n \" \$PATH \"
+/bin/ls -a
+/bin/ls -a ../
+awk
+echo
+echo -n
+echo -n -n -n -n
+echo Hello
+echo A B C D E F -n G H I
+/bin/ls filethatdoesntexist
+echo /s/a/l/u/tXXXX
+echo \$PATH:abc
+echo \$PATH.abc
+echo \$PATH\ abc
+echo \$PATH\\abc
+echo \$PATH+abc
+echo \$PATH,abc
+
+XXXX Commandes valides et + complexes
+
+ls ; pwd ; echo Hello
+ls ; pwd ;
+pwd;ls
+\"echo\" \"hello\"
+\"echo\" \"he;llo\"
+echo \"\ls\"ls
+
+unset qd sdfbdqfgqdfgsdg
+
+XXXX Commandes echo + variables d environnement
+
+echo \$PATH
+echo \"PATH\"
+echo PATH
+echo \'PATH\'
+echo \" PATH \"
+echo \" \$PATH \"
+echo \" \$PATH \$_system_name\"
+echo \'\$PATH\'
+echo \' \$PATH \'
+echo \"\$PATH\" \$SHELL Hello \"\$1\"
+
+XXXX Test PWD
+
+pwd
+\"pwd\"
+pwd .
+pwd ..
+ pwd .. 
+pwd ; echo \$?
+
+XXXX Test Simple Quotes
+
+'/bin/ls'
+l''s
+
+XXXX Test Pipe
+
+cat file | grep bla | more
+ls filethatdoesntexist | grep bla | more
+ls | grep Makefile | rev
+/bin/ls \"|\" /usr/bin/grep microshell
+pwd | cut -c7- | rev | tr e 42 | rev | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42 
+
+ pwd | cut -c7- | rev | tail | echo \$PWD
+
+XXXX Impossible de tester en récupérant PWD car on exit aussitôt
+XXXX Donc on teste via un ls pour check si on est au bon endroit
+
+cd ; ls
+cd . ; ls
+cd .. ; ls
+cd ~ ; ls
+cd ~/ ; ls
+cd .. ; pwd
+cd .. ; pwd ; echo \$?
+cd ; /bin/ls
+cd ; ../../bin/ls
+
+XXXX BUILTIN EXIT ><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><
+
+exit
+exit 1
+exit A
+exit 1 2
+exit A B C
+exit A1 B2
+exit 1A 2B
+exit -1
+exit -A
+exit 1-A
+exit 1A-
+exit 100000000000000000
+exit -100000000000000000
+
+XXXX PARSING EXIT VALUE ><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+;
+;;;
+<
+>
+;;;;;
+\"; ; ;\"
+\"; < ;\"
+\"; > ;\"
+; pwd ; echo Hello
+pwd;;;ls
+;;ls;;
+;ls;pwd;
+\"
+\"\"
+''
+\"\"\"\"\"\"
+ \"  \" 
+|
+  |;
+;|
+;|<
+<;
+>;
+;<
+;>
+ ;< ls ; 
+ ;> ls ; 
+'';
+>>
+  \"|\" ;
+'|'
+  '|' 
+|.
+< \" \" < ' '<
+\" \" ' ' > < > ''
+<
+>
+<<<<<<<<
+<<<
+>>>
+
+cat fddsqffgfhds
+cd ; ../../bin/cdfg
+cd ; ../../bin/ls
+
+XXXX multi lignes
+
+'''''
+'
+\";"\
+echo "\"
+echo |

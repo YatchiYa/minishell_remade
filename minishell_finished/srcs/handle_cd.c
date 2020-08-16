@@ -44,7 +44,8 @@ int			extends_cd(t_cmd *cmd, char *path)
 		value = ft_strdup("/");
 	else if (ft_strcmp_v2(cmd->argv[1], "--"))
 		value = find_env("HOME");
-	else if (ft_strcmp_v2(cmd->argv[1], "~"))
+	else if (ft_strcmp_v2(cmd->argv[1], "~") ||
+			ft_strcmp_v2(cmd->argv[1], "~/"))
 		value = find_env("HOME");
 	else
 		value = cmd->argv[1];
@@ -69,7 +70,7 @@ int			handle_cd(t_cmd *cmd)
 		chdir(value);
 		add_data("OLDPWD", path);
 	}
-	else if (cnt > 3)
+	else if (cnt >= 3)
 		return (too_many_arg_error(cmd->argv[0], EXIT_FAILURE));
 	else if (ft_strlen(cmd->argv[1]) > PATH_MAX)
 		return (file_too_long(cmd->argv[0], cmd->argv[1], EXIT_FAILURE));

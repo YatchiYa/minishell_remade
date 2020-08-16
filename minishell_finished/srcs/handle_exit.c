@@ -68,19 +68,16 @@ int		handle_exit(t_cmd *cmd)
 	char	ret;
 
 	count = count_arg(cmd->argv);
+	if (check_digit(cmd->argv, count) == 0)
+		return (too_many_arg_error(cmd->argv[0], EXIT_FAILURE));
 	index = check_str_digit(cmd->argv[1]);
 	if (cmd->argv[1])
 	{
+		ft_putstr("exit\n");
 		if (!index)
-		{
-			ft_putstr("exit\n");
 			exit(exit_digit_error(cmd->argv[0], cmd->argv[1], 2));
-		}
 		if (count > 2)
-		{
-			ft_putstr("exit\n");
 			return (too_many_arg_error(cmd->argv[0], 1));
-		}
 		ret = (char)ft_atoi(cmd->argv[1]);
 		free_all();
 		exit(ret);

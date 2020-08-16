@@ -12,6 +12,15 @@
 
 #include "minishell.h"
 
+int		check_digit(char **argv, int cnt)
+{
+	if (ft_isdigit(ft_atoi(argv[0])) && cnt > 2)
+		return (0);
+	if (!ft_isdigit(ft_atoi(argv[0])))
+		return (1);
+	return (1);
+}
+
 void	free_tab(char *str[8])
 {
 	int		i;

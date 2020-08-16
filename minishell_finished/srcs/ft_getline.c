@@ -46,15 +46,27 @@ char		**ft_split_arguments(char *line)
 {
 	char	**argv;
 	int		count;
+	char	*tmp;
 	int		i;
 
 	i = -1;
-	count = word_str_count(line);
+	if (line[0] == '>' ||
+		(line[1] && line[0] == '"' && line[1] == '>') ||
+		(line[1] && line[0] == '\'' && line[1] == '>'))
+		tmp = ft_strjoin("echo -n '' ", line);
+	else if (line[0] == '<' ||
+		(line[1] && line[0] == '"' && line[1] == '<') ||
+		(line[1] && line[0] == '\'' && line[1] == '<'))
+		tmp = ft_strjoin("echo -n '' ", line);
+	else
+		tmp = ft_strdup(line);
+	count = word_str_count(tmp);
 	if (!(argv = (char **)malloc(sizeof(char *) * (count + 1))))
 		return (NULL);
 	while (++i < count)
-		argv[i] = ft_split_arguments_extends(line, i + 1, 0, 0);
+		argv[i] = ft_split_arguments_extends(tmp, i + 1, 0, 0);
 	argv[i] = NULL;
+	free(tmp);
 	return (argv);
 }
 
@@ -120,14 +132,6 @@ int			ft_getline(void)
 		if (!current_line())
 			return (0);
 	}
-	if (minish->line[0] == '>' ||
-		(minish->line[1] && minish->line[0] == '"' && minish->line[1] == '>') ||
-		(minish->line[1] && minish->line[0] == '\'' && minish->line[1] == '>'))
-		minish->line = ft_strjoin("cat ", minish->line);
-	if (minish->line[0] == '<' ||
-		(minish->line[1] && minish->line[0] == '"' && minish->line[1] == '<') ||
-		(minish->line[1] && minish->line[0] == '\'' && minish->line[1] == '<'))
-		minish->line = ft_strjoin("less ", minish->line);
 	minish->argv = ft_split_arguments(minish->line);
 	if (!minish->argv)
 		error_minishell();

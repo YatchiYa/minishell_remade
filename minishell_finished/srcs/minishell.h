@@ -31,6 +31,8 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
+# include <stdio.h>
+# include <stdlib.h>
 
 # define CMD_ECHO "echo"
 # define CMD_EXIT "echo"
@@ -147,5 +149,6 @@ void				add_redir_cmd(t_cmd *cmd, char *redir, char *file);
 int					wordcount_arg(char **arr);
 t_rdir				*add_rdir(t_rdir *begin, char *file, int mode);
 int					nb_pipes(t_cmd *cmd_list);
+int					check_digit(char **argv, int cnt);
 
 #endif

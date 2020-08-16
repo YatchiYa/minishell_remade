@@ -23,13 +23,24 @@ void		display_echo(char **argv, int i, int cnt)
 	}
 }
 
+int			index_echo_display(char **argv, int i)
+{
+	while (argv[i] && ft_strcmp(argv[i], "-n") == 0)
+		i++;
+	return (i);
+}
+
 int			handle_echo(t_cmd *cmd)
 {
 	int cnt;
+	int	index;
 
 	cnt = count_arg(cmd->argv);
-	if (cnt > 2 && ft_strcmp_v2(cmd->argv[1], "-n"))
-		display_echo(cmd->argv, 2, cnt);
+	if (cnt >= 2 && ft_strcmp(cmd->argv[1], "-n") == 0)
+	{
+		index = index_echo_display(cmd->argv, 1);
+		display_echo(cmd->argv, index, cnt);
+	}
 	else
 	{
 		display_echo(cmd->argv, 1, cnt);
