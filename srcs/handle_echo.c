@@ -16,16 +16,43 @@ void		display_echo(char **argv, int i, int cnt)
 {
 	while (argv[i])
 	{
-		ft_putstr(argv[i]);
+		if (ft_strcmp(argv[i], "~") == 0 ||
+			ft_strcmp(argv[i], "~/") == 0)
+		{
+			ft_putstr(find_env("HOME"));
+		}
+		else
+			ft_putstr(argv[i]);
 		if (i < cnt - 1)
 			ft_putstr(" ");
 		i++;
 	}
 }
 
+int			spec_check_only_n(char *str)
+{
+	unsigned int		i;
+
+	if (str[0] != '-')
+		return (0);
+	else if (str[0] == '-' && str[1] && str[1] != 'n')
+		return (0);
+	else if (str[0] == '-' && str[1] && str[1] == 'n')
+	{
+		i = 1;
+		while (str[i] == 'n')
+			i++;
+		if (i == ft_strlen(str))
+			return (1);
+		else
+			return (0);
+	}
+	return (0);
+}
+
 int			index_echo_display(char **argv, int i)
 {
-	while (argv[i] && ft_strcmp(argv[i], "-n") == 0)
+	while (argv[i] && spec_check_only_n(argv[i]) == 1)
 		i++;
 	return (i);
 }

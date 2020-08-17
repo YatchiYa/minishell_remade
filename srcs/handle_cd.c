@@ -40,6 +40,11 @@ int			extends_cd(t_cmd *cmd, char *path)
 {
 	char		*value;
 
+	if (path == NULL && (ft_strcmp(cmd->argv[1], ".") == 0))
+	{
+		ft_putstr("Minishell : cannot access getcwd \n");
+		return (EXIT_FAILURE);
+	}
 	if (ft_strcmp_v2(cmd->argv[1], "/"))
 		value = ft_strdup("/");
 	else if (ft_strcmp_v2(cmd->argv[1], "--"))
@@ -67,7 +72,8 @@ int			handle_cd(t_cmd *cmd)
 	if (cnt == 1)
 	{
 		value = find_env("HOME");
-		chdir(value);
+		if (chdir(value) == -1)
+			return (no_file_error(cmd->argv[0], cmd->argv[0], EXIT_FAILURE));
 		add_data("OLDPWD", path);
 	}
 	else if (cnt >= 3)

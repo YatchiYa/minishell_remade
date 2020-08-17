@@ -10,27 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOLS_H
-# define TOOLS_H
-# include <stdlib.h>
-# include <unistd.h>
+#include "minishell.h"
 
-# define BUFFER_SIZE 4242
+void		remove_data(char *key)
+{
+	t_env *prev;
+	t_env *tmp;
+	t_env *next;
 
-char				*ft_strsub(char const *s, unsigned int start, size_t len);
-int					ft_isdigit(int c);
-int					ft_atoi(const char *str);
-char				*ft_itoa(int n);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putstr_fd(char *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
-void				*ft_memset(void *b, int c, size_t len);
-size_t				ft_strlen(const char *s);
-void				ft_putstr(char *s);
-char				*ft_strjoin(char const *s1, char const *s2);
-int					ft_strcmp(const char *s1, const char *s2);
-char				**ft_split(char const *s, char c);
-int					get_next_line(int fd, char **line);
-void				free_tab(char *str[8]);
+	prev = 0;
+	tmp = get_minish()->env;
+	while (tmp)
+	{
+		next = tmp->next;
+		if (ft_strcmp_v2(tmp->key, key))
+		{
+			if (prev)
+				prev->next = next;
+			else
+				get_minish()->env = next;
+			free(tmp->key);
+			if (tmp->value)
+				free(tmp->value);
+			free(tmp);
+			break ;
+		}
+		prev = tmp;
+		tmp = next;
+	}
+}
 
-#endif
+int			handle_unset(t_cmd *cmd)
+{
+	int i;
+
+	i = 1;
+	while (cmd->argv[i])
+	{
+		if (str_alphnum(cmd->argv[i]) == 0)
+		{
+			ft_putstr("minishell : << ");
+			ft_putstr(cmd->argv[i]);
+			ft_putstr(" >> identifier invalid \n");
+			return (EXIT_FAILURE);
+		}
+		remove_data(cmd->argv[i]);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}

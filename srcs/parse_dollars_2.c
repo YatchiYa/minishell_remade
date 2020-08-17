@@ -32,8 +32,10 @@ int			get_value_dollars_parse(char *arg, char *buff, int *j)
 	char	*value;
 	char	*tmp;
 	int		ret;
+	char	buf_tmp[2][LINE_MAX];
 
 	ret = 0;
+	split_dollar_parse(buf_tmp, arg);
 	if (*arg == '$' && *(arg + 1) == '?')
 	{
 		ret = 1;
@@ -45,7 +47,8 @@ int			get_value_dollars_parse(char *arg, char *buff, int *j)
 		buff[++*j] = *arg;
 	else
 	{
-		ret = get_env_data(key, ++arg);
+		tmp = buf_tmp[0];
+		ret = get_env_data(key, ++tmp);
 		value = find_env(key);
 		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
 	}

@@ -1,3 +1,10 @@
+
+echo ~
+echo -n -nnnn -nnnnn
+cd test 
+rm ../test 
+cd . ???
+
 xxxx        echo
 
 echo simple
@@ -63,6 +70,7 @@ cat < <
 cat < Makefile > test1 > test2
 cat < no_file > test1 > test2
 cat < no_file > test1 echo asdf
+cat < test2 > test1 echo hi
 
 XXXX pipe & redirection
 
@@ -81,6 +89,7 @@ awk
 echo
 echo -n
 echo -n -n -n -n
+echo -n -n -n -n hi
 echo Hello
 echo A B C D E F -n G H I
 /bin/ls filethatdoesntexist
@@ -91,6 +100,8 @@ echo \$PATH\ abc
 echo \$PATH\\abc
 echo \$PATH+abc
 echo \$PATH,abc
+echo $PATH+t1
+
 
 XXXX Commandes valides et + complexes
 

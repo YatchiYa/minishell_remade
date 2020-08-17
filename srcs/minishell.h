@@ -150,5 +150,6 @@ int					wordcount_arg(char **arr);
 t_rdir				*add_rdir(t_rdir *begin, char *file, int mode);
 int					nb_pipes(t_cmd *cmd_list);
 int					check_digit(char **argv, int cnt);
+void				split_dollar_parse(char buf_tmp[2][LINE_MAX], char *arg);
 
 #endif

@@ -31,6 +31,13 @@ void		add_data(char *key, char *value)
 		last = env;
 		env = env->next;
 	}
+	if (str_alphnum(key) == 0)
+	{
+		ft_putstr("minishell : << ");
+		ft_putstr(key);
+		ft_putstr(" >> identifier invalid \n");
+		return ;
+	}
 	last->next = new_data(key, value);
 }
 

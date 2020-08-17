@@ -15,7 +15,7 @@
 void		prompt_msg(void)
 {
 	if (get_minish()->is_end_of_file == 0)
-		display_prompt_msg();
+		ft_putstr("\033[31mMinish $> \033[0m");
 }
 
 t_minish	*get_minish(void)
