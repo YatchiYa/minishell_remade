@@ -16,12 +16,12 @@
 [31mMinish $> [0m01 : :
 [31mMinish $> [0m02 : $
 [31mMinish $> [0m[31mMinish $> [0m04 : \$
-[31mMinish $> [0m05 : #
+[31mMinish $> [0m05 : 
 [31mMinish $> [0m06 : \#
 [31mMinish $> [0m07 : */*
 [31mMinish $> [0m08 : **
 [31mMinish $> [0m10 : *
-[31mMinish $> [0m11 : #
+[31mMinish $> [0m11 : 
 [31mMinish $> [0m12 : /Users/yarab
 [31mMinish $> [0m13 : $HOME
 [31mMinish $> [0m14 : HOME
@@ -110,16 +110,16 @@
 [31mMinish $> [0m12 : \bonjour \les \amis
 [31mMinish $> [0m[31mMinish $> [0m
 [31mMinish $> [0mCOMMENTAIRES
-[31mMinish $> [0mcest une phrase un peu longue pour tester les #commentaires
-[31mMinish $> [0mcest une phrase un peu longue pour tester #les commentaires
-[31mMinish $> [0mcest une phrase un peu longue pour #tester les commentaires
-[31mMinish $> [0mcest une phrase un peu longue #pour tester les commentaires
-[31mMinish $> [0mcest une phrase un peu #longue pour tester les commentaires
-[31mMinish $> [0mcest une phrase un #peu longue pour tester les commentaires
-[31mMinish $> [0mcest une phrase #un peu longue pour tester les commentaires
-[31mMinish $> [0mcest une #phrase un peu longue pour tester les commentaires
-[31mMinish $> [0mcest #une phrase un peu longue pour tester les commentaires
-[31mMinish $> [0m#cest une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester les 
+[31mMinish $> [0mcest une phrase un peu longue pour tester  commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour  les commentaires
+[31mMinish $> [0mcest une phrase un peu longue  tester les commentaires
+[31mMinish $> [0mcest une phrase un peu  pour tester les commentaires
+[31mMinish $> [0mcest une phrase un  longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase  peu longue pour tester les commentaires
+[31mMinish $> [0mcest une  un peu longue pour tester les commentaires
+[31mMinish $> [0mcest  phrase un peu longue pour tester les commentaires
+[31mMinish $> [0m une phrase un peu longue pour tester les commentaires
 [31mMinish $> [0mcest une phrase un peu longue pour tester les #commentaires
 [31mMinish $> [0mcest une phrase un peu longue pour tester #les commentaires
 [31mMinish $> [0mcest une phrase un peu longue pour #tester les commentaires
