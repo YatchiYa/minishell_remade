@@ -21,6 +21,8 @@ void		display_echo(char **argv, int i, int cnt)
 		{
 			ft_putstr(find_env("HOME"));
 		}
+		else if (argv[i][0] == '#' && get_minish()->quote_found == 0)
+			;
 		else
 			ft_putstr(argv[i]);
 		if (i < cnt - 1)

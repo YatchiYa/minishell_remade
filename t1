@@ -1,0 +1,147 @@
+[H[2J [31mWelcome[0m[32mTo[0m[33m << [0m[34mMinishell[0m[35m >>[0m 
+[31mMinish $> [0mTESTS SIMPLES AVEC ESPACES
+[31mMinish $> [0mbonjour
+[31mMinish $> [0mbonjour
+[31mMinish $> [0mbonjour
+[31mMinish $> [0m            bonjour
+[31mMinish $> [0m      bonjour   
+[31mMinish $> [0mbonjour
+[31mMinish $> [0m            bonjour
+[31mMinish $> [0m      bonjour   
+[31mMinish $> [0mbonjour
+[31mMinish $> [0m--------;_________
+[31mMinish $> [0m--------
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mMETACARACTERES SANS QUOTES
+[31mMinish $> [0m01 : :
+[31mMinish $> [0m02 : $
+[31mMinish $> [0m[31mMinish $> [0m04 : \$
+[31mMinish $> [0m05 : #
+[31mMinish $> [0m06 : \#
+[31mMinish $> [0m07 : */*
+[31mMinish $> [0m08 : **
+[31mMinish $> [0m10 : *
+[31mMinish $> [0m11 : #
+[31mMinish $> [0m12 : /Users/yarab
+[31mMinish $> [0m13 : $HOME
+[31mMinish $> [0m14 : HOME
+[31mMinish $> [0m15 : /Users/yarab_stuff
+[31mMinish $> [0m[31mMinish $> [0m18 : ^
+[31mMinish $> [0m19 : ^
+[31mMinish $> [0m20 : _
+[31mMinish $> [0m21 : (
+[31mMinish $> [0m22 : %
+[31mMinish $> [0m23 : %
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mMETACARACTERES DOUBLES QUOTES
+[31mMinish $> [0m01 : :
+[31mMinish $> [0m02 : $
+[31mMinish $> [0m03 : \
+[31mMinish $> [0m04 : \
+[31mMinish $> [0m05 : #
+[31mMinish $> [0m06 : \#
+[31mMinish $> [0m07 : */*"
+[31mMinish $> [0m08 : *\*
+[31mMinish $> [0m09 : *
+[31mMinish $> [0m10 : \*
+[31mMinish $> [0m11 : #
+[31mMinish $> [0m12 : /Users/yarab
+[31mMinish $> [0m13 : $HOME
+[31mMinish $> [0m14 : \HOME
+[31mMinish $> [0m15 : /Users/yarab_stuff
+[31mMinish $> [0m16 : \|
+[31mMinish $> [0m17 : &
+[31mMinish $> [0m18 : \^
+[31mMinish $> [0m19 : ^
+[31mMinish $> [0m20 : _
+[31mMinish $> [0m21 : \(
+[31mMinish $> [0m22 : %
+[31mMinish $> [0m23 : \%
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mMETACARACTERES SIMPLES QUOTES
+[31mMinish $> [0m01 : :
+[31mMinish $> [0m02 : \$
+[31mMinish $> [0m03 : \\
+[31mMinish $> [0m04 : \\$
+[31mMinish $> [0m05 : #
+[31mMinish $> [0m06 : \\#
+[31mMinish $> [0m07 : */*\
+[31mMinish $> [0m08 : *\*
+[31mMinish $> [0m09 : *
+[31mMinish $> [0m10 : \*
+[31mMinish $> [0m11 : #
+[31mMinish $> [0m12 : $HOME
+[31mMinish $> [0m13 : \$HOME
+[31mMinish $> [0m14 : $\HOME
+[31mMinish $> [0m15 : $HOME_stuff
+[31mMinish $> [0m16 : \|
+[31mMinish $> [0m17 : &
+[31mMinish $> [0m18 : \^
+[31mMinish $> [0m19 : ^
+[31mMinish $> [0m20 : _
+[31mMinish $> [0m21 : \(
+[31mMinish $> [0m22 : %
+[31mMinish $> [0m23 : \%
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mSIMPLE COTE COMME APOSTROPHE
+[31mMinish $> [0m01 : I'm Here
+[31mMinish $> [0m02 : Im Here 
+[31mMinish $> [0m03 : Im Here   
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mINHIBITION METACARACTERES
+[31mMinish $> [0m01 : [31mMinish $> [0m02 : \2 \> \3 \= faux
+[31mMinish $> [0m03 : \2 \> \3 \= faux
+[31mMinish $> [0m04 : \2 \> \3 \= faux
+[31mMinish $> [0m05 : [31mMinish $> [0m06 : \2 '\> \3 \=' faux
+[31mMinish $> [0m07 : \2" \> \3" \= faux
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mQUOTES MELANGEES
+[31mMinish $> [0m01 : bonjour les amis
+[31mMinish $> [0m02 : bonjour les amis
+[31mMinish $> [0m03 : bonjour les amis
+[31mMinish $> [0m04 : 'bonjour les amis'
+[31mMinish $> [0m05 : "bonjour les amis"
+[31mMinish $> [0m06 : bonjour les amis
+[31mMinish $> [0m07 : bonjour "les" amis
+[31mMinish $> [0m08 : bonjour 'les' amis
+[31mMinish $> [0m09 : bonjour les amis
+[31mMinish $> [0m10 : bonjour les amis
+[31mMinish $> [0m11 : \bonjour \les \amis
+[31mMinish $> [0m12 : \bonjour \les \amis
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mCOMMENTAIRES
+[31mMinish $> [0mcest une phrase un peu longue pour tester les #commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester #les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour #tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue #pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu #longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un #peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase #un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une #phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest #une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0m#cest une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester les #commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester #les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour #tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue #pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu #longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un #peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase #un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une #phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest #une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0m#cest une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester les #commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour tester #les commentaires
+[31mMinish $> [0mcest une phrase un peu longue pour #tester les commentaires
+[31mMinish $> [0mcest une phrase un peu longue #pour tester les commentaires
+[31mMinish $> [0mcest une phrase un peu #longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase un #peu longue pour tester les commentaires
+[31mMinish $> [0mcest une phrase #un peu longue pour tester les commentaires
+[31mMinish $> [0mcest une #phrase un peu longue pour tester les commentaires
+[31mMinish $> [0mcest #une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0m#cest une phrase un peu longue pour tester les commentaires
+[31mMinish $> [0m[31mMinish $> [0m
+[31mMinish $> [0mDOUBLE POINT VIRGULE = EXIT
+[31mMinish $> [0m;;
+[31mMinish $> [0m;;
+[31mMinish $> [0m[31mMinish $> [0m  
