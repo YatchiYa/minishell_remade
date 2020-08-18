@@ -43,6 +43,9 @@ int		handle_pwd(t_cmd *cmd)
 	(void)cmd;
 	if (!(getcwd(cwd, sizeof(cwd))))
 	{
+		ft_putstr("normal shell : ");
+		ft_putstr(find_env("PWD"));
+		ft_putstr("/.\n but ");
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);
