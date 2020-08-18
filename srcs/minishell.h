@@ -79,6 +79,7 @@ typedef struct		s_minish
 	int				signal_is_called;
 	int				is_end_of_file;
 	int				ret;
+	int				quote_found;
 }					t_minish;
 
 t_minish			*get_minish(void);

@@ -16,8 +16,8 @@ void		display_echo(char **argv, int i, int cnt)
 {
 	while (argv[i])
 	{
-		if (ft_strcmp(argv[i], "~") == 0 ||
-			ft_strcmp(argv[i], "~/") == 0)
+		if ((ft_strcmp(argv[i], "~") == 0 ||
+			ft_strcmp(argv[i], "~/") == 0) && get_minish()->quote_found == 0)
 		{
 			ft_putstr(find_env("HOME"));
 		}
