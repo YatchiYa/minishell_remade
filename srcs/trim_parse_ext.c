@@ -22,3 +22,17 @@ int		trim_space(char *line, int i, int jmp)
 	}
 	return (jmp);
 }
+
+int		trim_comment(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '#')
+			return (i);
+		i++;
+	}
+	return (-1);
+}

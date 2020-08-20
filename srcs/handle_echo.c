@@ -17,14 +17,7 @@ void		display_echo(char **argv, int i, int cnt)
 	get_minish()->comment_found = 0;
 	while (argv[i])
 	{
-		if (argv[i][0] == '#' && get_minish()->quote_found == 0)
-		{
-			get_minish()->comment_found = 1;
-		}
-		else if (get_minish()->comment_found == 1)
-			;
-		else
-			ft_putstr(argv[i]);
+		ft_putstr(argv[i]);
 		if (i < cnt - 1)
 			ft_putstr(" ");
 		i++;

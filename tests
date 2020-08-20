@@ -17,8 +17,10 @@ echo -n simple
 echo simple text
 echo $PATH
 echo "$PATH"
+echo $PATH
 echo '$PATH'
 echo '\'
+echo "\"
 echo "\\"
 echo "\n \n \n"
 echo "\n \\n \\\n"

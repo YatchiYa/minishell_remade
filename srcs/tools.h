@@ -33,6 +33,7 @@ char				**ft_split(char const *s, char c);
 int					get_next_line(int fd, char **line);
 void				free_tab(char *str[8]);
 int					alphnum(char c);
+int					trim_comment(char *str);
 int					str_alphnum(char *str);
 
 #endif
