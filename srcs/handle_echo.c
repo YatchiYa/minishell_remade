@@ -14,14 +14,14 @@
 
 void		display_echo(char **argv, int i, int cnt)
 {
+	get_minish()->comment_found = 0;
 	while (argv[i])
 	{
-		if ((ft_strcmp(argv[i], "~") == 0 ||
-			ft_strcmp(argv[i], "~/") == 0) && get_minish()->quote_found == 0)
+		if (argv[i][0] == '#' && get_minish()->quote_found == 0)
 		{
-			ft_putstr(find_env("HOME"));
+			get_minish()->comment_found = 1;
 		}
-		else if (argv[i][0] == '#' && get_minish()->quote_found == 0)
+		else if (get_minish()->comment_found == 1)
 			;
 		else
 			ft_putstr(argv[i]);
@@ -39,7 +39,7 @@ int			spec_check_only_n(char *str)
 		return (0);
 	else if (str[0] == '-' && str[1] && str[1] != 'n')
 		return (0);
-	else if (str[0] == '-' && str[1] && str[1] == 'n')
+	else if (str[0] == '-' && str[1])
 	{
 		i = 1;
 		while (str[i] == 'n')
@@ -65,7 +65,7 @@ int			handle_echo(t_cmd *cmd)
 	int	index;
 
 	cnt = count_arg(cmd->argv);
-	if (cnt >= 2 && ft_strcmp(cmd->argv[1], "-n") == 0)
+	if (cnt >= 2 && spec_check_only_n(cmd->argv[1]) != 0)
 	{
 		index = index_echo_display(cmd->argv, 1);
 		display_echo(cmd->argv, index, cnt);

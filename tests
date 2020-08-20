@@ -1,9 +1,14 @@
 
 echo ~
-echo -n -nnnn -nnnnn
+echo "~" '~' ~
+echo ~ "~" '~' ~
+echo -nnnnn -nnnn -nnnnn
+echo -nnnnn -nnnn -nnnnnm
+echo -nnnnnm -nnnn -nnnnnm
 cd test 
 rm ../test 
 cd . ???
+
 
 xxxx        echo
 

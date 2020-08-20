@@ -98,14 +98,12 @@ char		*parse_quote(char *argv, int i)
 					i += get_value_dollars_parse(&argv[i], buff, &j);
 				else
 					i += backslash_parse(&argv[i], buff, &j, 1);
+		else if (argv[i] == '~')
+			i += parse_home(&argv[i], buff, &j);
+		else if (argv[i] == '$')
+			i += get_value_dollars_parse(&argv[i], buff, &j);
 		else
-		{
-			get_minish()->quote_found = 0;
-			if (argv[i] == '$')
-				i += get_value_dollars_parse(&argv[i], buff, &j);
-			else
-				i += backslash_parse(&argv[i], buff, &j, 0);
-		}
+			i += backslash_parse(&argv[i], buff, &j, 0);
 	buff[++j] = '\0';
 	return (ft_strdup(buff));
 }

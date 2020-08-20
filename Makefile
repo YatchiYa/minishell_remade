@@ -23,6 +23,7 @@ SRC = 	srcs/cmd_init.c	\
 		srcs/handle_unset.c	\
 		srcs/main.c	\
 		srcs/parse_dollars_2.c	\
+		srcs/parse_dollars_3.c	\
 		srcs/pipe_handle.c	\
 		srcs/prompt.c	\
 		srcs/redirect_config.c	\
