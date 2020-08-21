@@ -98,7 +98,7 @@ char		*parse_quote(char *argv, int i)
 					i += get_value_dollars_parse(&argv[i], buff, &j);
 				else
 					i += backslash_parse(&argv[i], buff, &j, 1);
-		else if (argv[i] == '~')
+		else if (argv[0] == '~')
 			i += parse_home(&argv[i], buff, &j);
 		else if (argv[i] == '$')
 			i += get_value_dollars_parse(&argv[i], buff, &j);
@@ -120,6 +120,11 @@ int			handle_dollars_parse(t_cmd *cmd)
 	{
 		old_arg = cmd->argv[i];
 		cmd->argv[i] = parse_quote(cmd->argv[i], -1);
+		if (cmd->argv[i] == NULL && cmd->argv[i + 1])
+		{
+			while (cmd->argv[++i])
+				free(cmd->argv[i]);
+		}
 		free(old_arg);
 	}
 	if (!check_output(cmd->output))
