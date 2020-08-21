@@ -20,16 +20,20 @@ int			parse_home(char *argv, char *buff, int *j)
 	if (ft_strcmp(argv, "~") == 0)
 	{
 		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
-		return (1);
+		free(buff);
+		return (ft_strlen(argv) - 1);
 	}
 	else if (ft_strcmp(argv, "~/") == 0)
 	{
 		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
-		return (2);
+		free(buff);
+		return (ft_strlen(argv) - 1);
 	}
 	else
 	{
-		*j = ft_strlcat(buff, argv, LINE_MAX) - 1;
-		return (ft_strlen(argv) - 1);
+		value = ft_strdup("~");
+		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
+		free(value);
+		return (0);
 	}
 }
