@@ -16,24 +16,21 @@ int			parse_home(char *argv, char *buff, int *j)
 {
 	char	*value;
 
-	value = find_env("HOME");
 	if (ft_strcmp(argv, "~") == 0)
 	{
+		value = find_env("HOME");
 		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
-		free(buff);
 		return (ft_strlen(argv) - 1);
 	}
 	else if (ft_strcmp(argv, "~/") == 0)
 	{
+		value = find_env("HOME");
 		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
-		free(buff);
 		return (ft_strlen(argv) - 1);
 	}
 	else
 	{
-		value = ft_strdup("~");
-		*j = ft_strlcat(buff, value, LINE_MAX) - 1;
-		free(value);
+		*j = ft_strlcat(buff, "~", LINE_MAX) - 1;
 		return (0);
 	}
 }
