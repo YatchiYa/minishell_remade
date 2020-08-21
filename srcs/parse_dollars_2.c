@@ -102,7 +102,7 @@ char		*parse_quote(char *argv, int i)
 			i += parse_home(&argv[i], buff, &j);
 		else if (argv[i] == '$')
 			i += get_value_dollars_parse(&argv[i], buff, &j);
-		else if (argv[i] == '#')
+		else if (argv[0] == '#')
 			return (NULL);
 		else
 			i += backslash_parse(&argv[i], buff, &j, 0);
