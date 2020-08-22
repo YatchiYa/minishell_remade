@@ -44,6 +44,20 @@ t_rdir		*add_rdir(t_rdir *begin, char *file, int mode)
 
 int			ret_ext(void)
 {
-	ft_putstr("minishell : redirection ambigue \n");
+	ft_putstr("minishell : redirection ambigue ou fichier null \n");
 	return (0);
+}
+
+int			space_found(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -81,6 +81,8 @@ typedef struct		s_minish
 	int				ret;
 	int				quote_found;
 	int				comment_found;
+	int				output_first;
+	int				input_first;
 }					t_minish;
 
 t_minish			*get_minish(void);
@@ -111,7 +113,7 @@ void				free_1(void);
 t_cmd				*pipe_cmd_call(t_cmd *cmd);
 int					is_builtin(char *arg);
 void				get_signal_builtin_cmd(int status, int signo);
-int					handle_dollars_parse(t_cmd *cmd);
+int					handle_dollars_parse(t_cmd *cmd, int i);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 int					check_output(t_rdir *out);
 int					check_dollar(t_cmd *cmd);

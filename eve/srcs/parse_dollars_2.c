@@ -110,21 +110,29 @@ char		*parse_quote(char *argv, int i)
 	return (ft_strdup(buff));
 }
 
-int			handle_dollars_parse(t_cmd *cmd)
+int			handle_dollars_parse(t_cmd *cmd, int i)
 {
 	char	*old_arg;
-	int		i;
 
-	i = -1;
 	while (cmd->argv[++i])
 	{
 		old_arg = cmd->argv[i];
 		cmd->argv[i] = parse_quote(cmd->argv[i], -1);
 		free(old_arg);
 	}
-	if (!check_input(cmd->input))
-		return (0);
-	if (!check_output(cmd->output))
-		return (0);
+	if (get_minish()->input_first == 1)
+	{
+		if (!check_input(cmd->input))
+			return (0);
+		if (!check_output(cmd->output))
+			return (0);
+	}
+	if (get_minish()->output_first == 1)
+	{
+		if (!check_output(cmd->output))
+			return (0);
+		if (!check_input(cmd->input))
+			return (0);
+	}
 	return (1);
 }

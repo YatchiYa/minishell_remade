@@ -1,9 +1,14 @@
+"" 
+''
+echo bonjour > $test w/ test="o1 o2" > erreur redirection ambigue		
+ls > t1 > t2 < t4
+ls < t4 > t1 > t2
+
 
 export var="cat t1" ; $var
 export var="cat Makefile | grep >" 
 export var="cat Makefile | grep <" 
 "cat" "Makefile" "|" "grep" ">" 
-echo bonjour > $test w/ test="o1 o2" > erreur redirection ambigue		
 
 
 echo ~

@@ -85,7 +85,7 @@ void		exec_non_builtin(t_cmd *cmd)
 {
 	char	**path_arr;
 
-	if (!handle_dollars_parse(cmd))
+	if (!handle_dollars_parse(cmd, -1))
 		exit(EXIT_FAILURE);
 	set_redirect_dup2(cmd);
 	if (!cmd->has_path && (path_arr = get_absolute_path()))

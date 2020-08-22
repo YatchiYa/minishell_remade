@@ -57,7 +57,7 @@ int			exec_builtin(int btin_nb, t_cmd *cmd)
 	int ret;
 
 	ret = -1;
-	if (!handle_dollars_parse(cmd))
+	if (!handle_dollars_parse(cmd, -1))
 		return (EXIT_FAILURE);
 	set_redirect_dup2(cmd);
 	if (btin_nb == 0)

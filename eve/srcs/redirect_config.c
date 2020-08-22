@@ -44,7 +44,8 @@ int				check_output(t_rdir *output_file)
 		old_file = output_file->file_io;
 		output_file->file_io = parse_quote(output_file->file_io, -1);
 		free(old_file);
-		if (ft_strlen(output_file->file_io) == 0)
+		if (ft_strlen(output_file->file_io) == 0 ||
+			!space_found(output_file->file_io))
 			return (ret_ext());
 		if (output_file->over_write)
 			output_file->fd = open(output_file->file_io,

@@ -19,11 +19,23 @@ void		add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 	last = last_cmd(cmd);
 	last->is_rdir = 1;
 	if (ft_strcmp_v2(redir, "<"))
+	{
+		if (get_minish()->output_first == 0)
+			get_minish()->input_first = 1;
 		last->input = add_rdir(last->input, file, 0);
+	}
 	else if (ft_strcmp_v2(redir, ">"))
+	{
+		if (get_minish()->input_first == 0)
+			get_minish()->output_first = 1;
 		last->output = add_rdir(last->output, file, 0);
+	}
 	else if (ft_strcmp_v2(redir, ">>"))
+	{
+		if (get_minish()->input_first == 0)
+			get_minish()->output_first = 1;
 		last->output = add_rdir(last->output, file, 1);
+	}
 }
 
 void		add_pip_cmd(t_cmd *cmd)
@@ -66,10 +78,11 @@ int			init_cmd(char **argv)
 		return (0);
 	minish = get_minish();
 	minish->cmd = 0;
-	i = 0;
+	minish->input_first = 0;
+	minish->output_first = 0;
+	i = -1;
 	ret = 1;
-	while (argv[i])
-	{
+	while (argv[++i])
 		if (ret && !(ret = 0))
 			minish->cmd = add_cmd(minish->cmd, argv[i]);
 		else if (ft_strcmp_v2(argv[i], "|") && (ret = 1))
@@ -80,7 +93,5 @@ int			init_cmd(char **argv)
 			continue;
 		else
 			add_argv_cmd(minish->cmd, argv[i]);
-		i++;
-	}
 	return (1);
 }

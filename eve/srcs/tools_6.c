@@ -77,17 +77,17 @@ char		*parse_quote_3(char *argv, int i)
 	j = -1;
 	ft_memset(buff, 0, LINE_MAX);
 	if (argv[0] == '$')
-    {
-        i += get_value_dollars_parse_2(&argv[0], buff, &j);
+	{
+		i += get_value_dollars_parse_2(&argv[0], buff, &j);
 		trrm(buff);
 		if (ft_strlen(buff) == 0)
 			return (argv);
-    }
-    else
-    {
-        while (argv[++i])
-            buff[++j] = argv[i];
-    }
+	}
+	else
+	{
+		while (argv[++i])
+			buff[++j] = argv[i];
+	}
 	buff[++j] = '\0';
 	free(argv);
 	return (ft_strdup(buff));
