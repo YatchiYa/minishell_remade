@@ -1,0 +1,345 @@
+
+export var="cat t1" ; $var
+export var="cat Makefile | grep >" 
+export var="cat Makefile | grep <" 
+"cat" "Makefile" "|" "grep" ">" 
+echo bonjour > $test w/ test="o1 o2" > erreur redirection ambigue		
+
+
+echo ~
+echo "~" '~' ~
+echo ~ "~" '~' ~
+echo -nnnnn -nnnn -nnnnn
+echo -nnnnn -nnnn -nnnnnm
+
+mkdir test ; cd test ; rm -rf ../test
+cd . ???
+
+
+xxxx        echo
+
+echo simple
+echo -n simple
+echo "-n simple"
+echo simple text
+echo $PATH
+echo "$PATH"
+echo $PATH
+echo '$PATH'
+echo '\'
+echo "\"
+echo "\\"
+echo "\n \n \n"
+echo "\n \\n \\\n"
+echo hi; echo hihi;
+echo ;;	
+echo hi";" hihi
+echo hi "   ;   " hihi
+echo one; echo two; echo three;
+
+XXXX        cd
+
+cd
+cd .
+cd ..
+cd ~
+cd 
+cd no_file
+cd a b c d
+pwd
+pwd
+pwd a
+pwd a b c d 
+
+XXXX export && env && unset
+
+export
+export LOL	
+export LOL=lol	
+export LOL	 
+unset LOL
+export LOL=lala ROR=rara  
+unset LOL ROR
+export "HI= hi"
+export "HI =hi"  
+
+XXXX non built-in command
+
+binls
+/bin/ls
+ls
+ls -al
+clear
+whoami
+
+XXXX pipe
+
+| echo
+echo | | echo
+
+XXXX redirection
+
+cat < >	
+cat < <
+cat < Makefile > test1 > test2
+cat < no_file > test1 > test2
+cat < no_file > test1 echo asdf
+cat < test2 > test1 echo hi
+
+XXXX pipe & redirection
+
+cat < Makefile | grep gcc > output
+cat < nofile | grep gcc > output
+
+
+XXXX Commandes valides et basiques
+
+/bin/ls
+/bin/echo -n \"Hello\"
+/bin/echo -n \" \$PATH \"
+/bin/ls -a
+/bin/ls -a ../
+awk
+echo
+echo -n
+echo -n -n -n -n
+echo -n -n -n -n hi
+echo -nd -n -n -n hi
+echo Hello
+echo A B C D E F -n G H I
+/bin/ls filethatdoesntexist
+echo /s/a/l/u/tXXXX
+echo \$PATH:abc
+echo \$PATH.abc
+echo \$PATH\ abc
+echo \$PATH\\abc
+echo \$PATH+abc
+echo \$PATH,abc
+echo $PATH+t1
+
+
+XXXX Commandes valides et + complexes
+
+ls ; pwd ; echo Hello
+ls ; pwd ;
+pwd;ls
+\"echo\" \"hello\"
+\"echo\" \"he;llo\"
+echo \"\ls\"ls
+
+unset qd sdfbdqfgqdfgsdg
+
+XXXX Commandes echo + variables d environnement
+
+echo \$PATH
+echo \"PATH\"
+echo PATH
+echo \'PATH\'
+echo \" PATH \"
+echo \" \$PATH \"
+echo \" \$PATH \$_system_name\"
+echo \'\$PATH\'
+echo \' \$PATH \'
+echo \"\$PATH\" \$SHELL Hello \"\$1\"
+
+XXXX Test PWD
+
+pwd
+\"pwd\"
+pwd .
+pwd ..
+ pwd .. 
+pwd ; echo \$?
+\"pwd\" ; echo $?
+
+XXXX Test Simple Quotes
+
+'/bin/ls'
+l''s
+
+XXXX Test Pipe
+
+cat file | grep bla | more
+ls filethatdoesntexist | grep bla | more
+ls | grep Makefile | rev
+/bin/ls \"|\" /usr/bin/grep microshell
+pwd | cut -c7- | rev | tr e 42 | rev | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42  | tr e 42 | tr e 42 | tr e 42 
+
+ pwd | cut -c7- | rev | tail | echo \$PWD
+
+XXXX Impossible de tester en récupérant PWD car on exit aussitôt
+XXXX Donc on teste via un ls pour check si on est au bon endroit
+
+cd ; ls
+cd . ; ls
+cd .. ; ls
+cd ~ ; ls
+cd ~/ ; ls
+cd .. ; pwd
+cd .. ; pwd ; echo \$?
+cd ; /bin/ls
+cd ; ../../bin/ls
+
+XXXX BUILTIN EXIT ><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><
+
+exit
+exit 1
+exit A
+exit 1 2
+exit 1 A
+exit A B C
+exit A1 B2
+exit 1A 2B
+exit -1
+exit -A
+exit 1-A
+exit 1A-
+exit 100000000000000000
+exit -100000000000000000
+
+XXXX PARSING EXIT VALUE ><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+;
+;;;
+<
+>
+;;;;;
+\"; ; ;\"
+\"; < ;\"
+\"; > ;\"
+; pwd ; echo Hello
+pwd;;;ls
+;;ls;;
+;ls;pwd;
+\"
+\"\"
+''
+\"\"\"\"\"\"
+ \"  \" 
+|
+  |;
+;|
+;|<
+<;
+>;
+;<
+;>
+ ;< ls ; 
+ ;> ls ; 
+'';
+>>
+  \"|\" ;
+'|'
+  '|' 
+|.
+< \" \" < ' '<
+\" \" ' ' > < > ''
+<
+>
+<<<<<<<<
+<<<
+>>>
+
+cat fddsqffgfhds
+cd ; ../../bin/cdfg
+cd ; ../../bin/ls
+
+XXXX multi lignes
+
+'''''
+'
+\";"\
+echo "\"
+echo |
+
+export var="bonjour\toi" > bonjour\toi														
+export var="bonjour\\toi" > bonjour\toi														
+export var="bonjour\"toi" > bonjour"toi						
+
+
+
+echo "bip | bip ; coyotte > < \" " > bip | bip ; coyotte > < "							
+echo "bip | bip ; coyotte > < " " > bip | bip ; coyotte > < "			
+
+cat | cat | cat | ls > ligne					
+
+$bla (non-export) > retour a la ligne							
+
+export var ="cat Makefile | grep >"
+export var="cat Makefile | grep > t1" 
+export var="cat Makefile | grep >" 
+cat Makefile "|" grep ">" 
+
+export var="ls > t1" ; $var
+export var="cat > t1" ; $var
+
+
+export $var										
+export $varhhh=test	
+
+export "test=ici"=coucou > test="ici=coucou"				
+
+c$var Makefile (avec $var=at) > equivalent a cat Makefile						
+				
+$LESS$VAR 
+/bin/echo bonjour						
+
+not_cmd																
+sleep 5 | exit					
+echo $var bonjour avec $var non export > [bonjour]										
+echo "" bonjour > [ bonjour]		   	  												
+cat -e > test1 < test2 > meme si test2 n'existe pas test1 doit être créé				
+unset = > erreur	   	  	   	  				 	 	   			 					
+export test="123"" ; echo $test > 123"													
+export test="123\"" ; echo $test > 123"													
+echo "12\"" > 12"																		
+cd /home/user42/ > chemin absolu														
+$ > command not found																	
+not_cmd bonjour > salut > create file but error msg on standard entry					
+env puis export puis env > les variables ne doivent pas etre triées					
+cat bla > 1																			
+ls bonjour > 2																			
+cat Makefile | grep pr | head -n 5 | cd test > (mybin) . 1								
+cat Makefile | grep pr | head -n 5 | cat test > (bin) . 1								
+cat Makefile | grep pr | head -n 5 | hello > (NA) . 127 								
+echo bonjour >>> test > erreur de syntaxe && erreur 2									
+echo bonjour > > out > erreur de syntaxe && erreur 2									
+echo 2 >> out1 > out2 > n'efface pas out1												
+echo 2 > out1 >> out2 > efface out1													
+cat < test > aucun fichier ou dossier de ce type										
+export var puis export var=test > verifier pas de doublon								
+echo bonjour > $test > redirection ambigue si test pas set								
+file_name > cmd not found (pbm avec stat() pour les binaires)							
+echo ~ > /home/user42																	
+
+
+echo test >																				
+
+
+
+
+cd ~ > redirige vers /home/user42														
+cd ../../../../../.. > pwd : /															
+ctrl-C > O 130 sur bin(ex : sleep 10)&line vide										
+$SHLVL > doit être incrémenté a chaque lancement de minishell							
+echo bonjour ; | > 2																	
+echo bonjour | | > 2																	
+| > 2																					
+echo bonjour |; > 2																	
+echo bonjour \; ls > bonjour ; ls														
+echo bonjour > test\ 1 > creation du fichier "test 1"									
+cd $HOME/Bureau > accède au dossier Bureau	  											
+echo "\s" & echo "\\s" > should have the exact same output.							
+echo \> > >																			
+echo -n -n -nnnn -nnnnm > -nnnnm														
+echo -n -nnn hello -n > hello -n														
+cd - > (écrit le nouveau cwd [current working directory])								
+
+dans cd {sans arg/~/-} : faire attentions aux variable d'env si par ex $OLDPWD n'existe pas
+
+cat /dev/random | head -n 1 | cat -e	  	  		   		 . /!\ a faire sur la VM	
+unset var > var1 ne doit pas etre unset												
+export ""  et unset "" > erreur														
+echo test > file test1 > = echo test test1 > file										
+
+echo \>\>																				
