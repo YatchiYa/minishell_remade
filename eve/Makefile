@@ -30,6 +30,8 @@ SRC = 	srcs/cmd_init.c	\
 		srcs/redirections.c	\
 		srcs/tools.c	\
 		srcs/tools_2.c	\
+		srcs/tools_7.c	\
+		srcs/tools_8.c	\
 		srcs/tools_5.c	\
 		srcs/tools_3.c	\
 		srcs/tools_4.c	\

@@ -73,7 +73,6 @@ int		handle_exit(t_cmd *cmd)
 	index = check_str_digit(cmd->argv[1]);
 	if (cmd->argv[1])
 	{
-		ft_putstr("exit\n");
 		if (!index)
 			exit(exit_digit_error(cmd->argv[0], cmd->argv[1], 2));
 		if (count > 2)
@@ -83,5 +82,5 @@ int		handle_exit(t_cmd *cmd)
 		exit(ret);
 	}
 	free_all();
-	exit(EXIT_SUCCESS);
+	exit(0);
 }

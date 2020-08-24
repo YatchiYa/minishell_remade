@@ -72,7 +72,7 @@ void		free_1(void)
 		if (cmd->argv)
 		{
 			i = -1;
-			while (cmd->argv[++i])
+			while (cmd->argv && cmd->argv[++i] && cmd->argv[i])
 				free(cmd->argv[i]);
 			free(cmd->argv);
 		}

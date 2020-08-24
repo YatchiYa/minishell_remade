@@ -32,18 +32,18 @@ int		trim_quote(char *line, int i)
 			i++;
 		if (line[i] == '\0')
 		{
-			ft_putstr("QUOTES NEED TO BE CLOSE\n");
+			ft_putstr("QUOTES SS NEED TO BE CLOSE\n");
 			return (-1);
 		}
 	}
-	else if (line[i] == '\'')
+	else if (line[i] == '\'' && (i == 0 || line[i - 1] != '\\'))
 	{
 		i++;
-		while (line[i] != '\'' && line[i])
+		while (trim_backslash(line, &i, '\''))
 			i++;
 		if (line[i] == '\0')
 		{
-			ft_putstr("QUOTES NEED TO BE CLOSE\n");
+			ft_putstr("QUOTES XX NEED TO BE CLOSE\n");
 			return (-1);
 		}
 	}
@@ -105,7 +105,7 @@ int		word_str_count(char *line)
 			{
 				if ((i = trim_quote(line, i)) == -1)
 					return (0);
-				if (line[i] == '\\' && !line[i + 1])
+				if (trim_backslash_2(line, &i) == 0)
 					return (0);
 				i++;
 			}

@@ -122,6 +122,7 @@ int			ft_getline(void)
 	t_minish	*minish;
 
 	minish = get_minish();
+	minish->argv = NULL;
 	if (minish->is_end_of_file)
 	{
 		if (!previous_line_is_eof())

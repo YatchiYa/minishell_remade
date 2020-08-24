@@ -37,7 +37,8 @@ int					trim_comment(char *str);
 int					str_alphnum(char *str);
 void				free_tab_arg(char **tab);
 int					count_count_arg(char **tab);
-char				**trim_arg_cmd(char **argv);
 int					space_found(char *str);
+void				trm_cmd(void);
+void				get_builtin(char *builtins[8]);
 
 #endif

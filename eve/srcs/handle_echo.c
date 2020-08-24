@@ -54,19 +54,23 @@ int			index_echo_display(char **argv, int i)
 
 int			handle_echo(t_cmd *cmd)
 {
-	int cnt;
-	int	index;
+	int		cnt;
+	int		index;
+	char	**tmp;
 
-	cnt = count_arg(cmd->argv);
-	if (cnt >= 2 && spec_check_only_n(cmd->argv[1]) != 0)
+	tmp = ft_split(cmd->argv[0], ' ');
+	tmp = tab_join(tmp, cmd->argv);
+	cnt = count_arg(tmp);
+	if (cnt >= 2 && spec_check_only_n(tmp[1]) != 0)
 	{
-		index = index_echo_display(cmd->argv, 1);
-		display_echo(cmd->argv, index, cnt);
+		index = index_echo_display(tmp, 1);
+		display_echo(tmp, index, cnt);
 	}
 	else
 	{
-		display_echo(cmd->argv, 1, cnt);
+		display_echo(tmp, 1, cnt);
 		ft_putstr("\n");
 	}
+	free_tab_arg(tmp);
 	return (EXIT_SUCCESS);
 }

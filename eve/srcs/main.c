@@ -60,6 +60,9 @@ void		signal_handler(int signo)
 
 int			main(int argc, char **argv, char **env)
 {
+	int		ret;
+
+	ret = -58511;
 	if (!argc || !argv || !env)
 		return (0);
 	init_env(env);
@@ -73,12 +76,12 @@ int			main(int argc, char **argv, char **env)
 		prompt_msg();
 		if (!ft_getline())
 			continue ;
-		if (!init_cmd(get_minish()->argv))
+		if (!init_cmd(get_minish()->argv, 0))
 		{
 			free_1();
 			continue ;
 		}
-		exec_command();
+		exec_command(ret);
 		free_1();
 	}
 	return (0);

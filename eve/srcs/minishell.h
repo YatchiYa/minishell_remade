@@ -64,6 +64,7 @@ typedef struct		s_cmd
 	int				is_pipe;
 	int				is_rdir;
 	int				has_path;
+	int				start_dollars;
 	t_rdir			*input;
 	t_rdir			*output;
 	struct s_cmd	*next;
@@ -83,6 +84,8 @@ typedef struct		s_minish
 	int				comment_found;
 	int				output_first;
 	int				input_first;
+	int				free_or_not;
+	int				exit_cmd;
 }					t_minish;
 
 t_minish			*get_minish(void);
@@ -97,7 +100,7 @@ int					check_errors_arg(char **argv);
 int					word_str_count(char *line);
 int					trim_space(char *line, int i, int jmp);
 int					jmp_quotes(char *line, int i);
-int					init_cmd(char **argv);
+int					init_cmd(char **argv, int i);
 int					check_errors_arg(char **argv);
 int					is_point_virgule(char **argv);
 int					is_pipe(char **argv);
@@ -144,7 +147,7 @@ int					error_commande(char *cmd, int ret);
 int					syntax_error(char *token, int ret);
 int					no_file_error(char *cmd, char *file, int ret);
 int					too_many_arg_error(char *cmd, int ret);
-void				exec_command(void);
+void				exec_command(int ret);
 void				eof_exit(void);
 void				get_exit_code(int status, int excode);
 int					file_too_long(char *cmd, char *file, int ret);
@@ -163,5 +166,22 @@ int					backslash_parse(char *arg, char *buff, int *j, int quotes);
 int					get_value_dollars_parse(char *arg, char *buff, int *j);
 char				*parse_quote_3(char *argv, int i);
 int					get_env_data(char key[], char *arg);
+char				*ft_split_arguments_extends(char *line, int index,
+						int start, int count);
+char				*ft_split_arguments_extends(char *line, int index,
+						int start, int count);
+char				**ft_split_arguments(char *line);
+char				**trim_argv_2(char **argv);
+char				**trim_arg_cmd(char **argv);
+void				print_cmd(void);
+void				free_11(void);
+void				free_redirections(t_cmd *cmd);
+void				free_line(void);
+void				execrrr(t_cmd *cmd, char **path_arr);
+char				**tab_join(char **tab, char **argv);
+char				*parse_quote_q(char *argv, int i, t_cmd *cmd);
+int					is_builtin_ext(char *arg, int i);
+void				ext_non_built(t_cmd *cmd, char **tmp);
+int					trim_backslash_2(char *line, int *i);
 
 #endif

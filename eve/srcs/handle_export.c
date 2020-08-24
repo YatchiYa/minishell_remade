@@ -101,7 +101,7 @@ int			handle_export(t_cmd *cmd)
 
 	i = 0;
 	ret = EXIT_SUCCESS;
-	if (!cmd->argv[1])
+	if (!cmd->argv[1] || ft_strlen(cmd->argv[1]) == 0)
 		printf_env_export(get_minish()->env);
 	else
 		while (cmd->argv[++i])

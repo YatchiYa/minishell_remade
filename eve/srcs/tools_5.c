@@ -81,12 +81,7 @@ char		*parse_quote_8(char *argv, int i)
 				buff[++j] = argv[i];
 		else if (argv[i] == '\"')
 			while (argv[i++])
-				if (argv[i] == '$')
-					i += get_value_dollars_parse(&argv[i], buff, &j);
-				else
-					i += backslash_parse(&argv[i], buff, &j, 1);
-		else if (argv[i] == '~')
-			i += parse_home(&argv[i], buff, &j);
+				buff[++j] = argv[i];
 		else if (argv[i] == '$')
 			i += get_value_dollars_parse(&argv[i], buff, &j);
 		else

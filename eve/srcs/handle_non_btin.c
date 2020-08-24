@@ -68,35 +68,40 @@ void		exec_with_path(t_cmd *cmd, char **path_arr)
 	int		i;
 
 	i = 0;
-	while (path_arr[i])
-	{
-		path = ft_strjoin(path_arr[i], "/");
-		path_extend = ft_strjoin(path, cmd->argv[0]);
-		g_envp = get_env_full(get_minish()->env);
-		execve(path_extend, cmd->argv, g_envp);
-		free_env_2(g_envp);
-		free(path);
-		free(path_extend);
-		i++;
-	}
+	if (space_found(cmd->argv[0]) == 0 && cmd->start_dollars == 1)
+		execrrr(cmd, path_arr);
+	else
+		while (path_arr[i])
+		{
+			path = ft_strjoin(path_arr[i], "/");
+			path_extend = ft_strjoin(path, cmd->argv[0]);
+			g_envp = get_env_full(get_minish()->env);
+			execve(path_extend, cmd->argv, g_envp);
+			free_env_2(g_envp);
+			free(path);
+			free(path_extend);
+			i++;
+		}
 }
 
 void		exec_non_builtin(t_cmd *cmd)
 {
 	char	**path_arr;
+	char	**tmp;
 
+	tmp = NULL;
 	if (!handle_dollars_parse(cmd, -1))
 		exit(EXIT_FAILURE);
 	set_redirect_dup2(cmd);
-	if (!cmd->has_path && (path_arr = get_absolute_path()))
+	if ((cmd->argv[0] == NULL ||
+		ft_strlen(cmd->argv[0]) == 0) && cmd->start_dollars == 1)
+		;
+	else if (!cmd->has_path && (path_arr = get_absolute_path()))
 	{
 		exec_with_path(cmd, path_arr);
 		free_path(path_arr);
 		exit(error_commande(cmd->argv[0], 127));
 	}
 	else
-	{
-		execve(cmd->argv[0], cmd->argv, get_env_full(get_minish()->env));
-		exit(no_file_error(cmd->argv[0], NULL, 1));
-	}
+		ext_non_built(cmd, tmp);
 }

@@ -117,7 +117,7 @@ int			handle_dollars_parse(t_cmd *cmd, int i)
 	while (cmd->argv[++i])
 	{
 		old_arg = cmd->argv[i];
-		cmd->argv[i] = parse_quote(cmd->argv[i], -1);
+		cmd->argv[i] = parse_quote_q(cmd->argv[i], -1, cmd);
 		free(old_arg);
 	}
 	if (get_minish()->input_first == 1)

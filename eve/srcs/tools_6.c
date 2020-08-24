@@ -82,13 +82,15 @@ char		*parse_quote_3(char *argv, int i)
 		trrm(buff);
 		if (ft_strlen(buff) == 0)
 			return (argv);
+		free(argv);
+		return (ft_strdup(buff));
 	}
 	else
 	{
 		while (argv[++i])
 			buff[++j] = argv[i];
+		buff[++j] = '\0';
 	}
-	buff[++j] = '\0';
 	free(argv);
 	return (ft_strdup(buff));
 }
