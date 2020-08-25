@@ -50,13 +50,13 @@ char		**ft_split_arguments(char *line)
 	int		i;
 
 	i = -1;
-	if (line[0] == '>' ||
+	if ((line && line[0]) && (line[0] == '>' ||
 		(line[1] && line[0] == '"' && line[1] == '>') ||
-		(line[1] && line[0] == '\'' && line[1] == '>'))
+		(line[1] && line[0] == '\'' && line[1] == '>')))
 		tmp = ft_strjoin("echo -n '' ", line);
-	else if (line[0] == '<' ||
+	else if ((line && line[0]) && (line[0] == '<' ||
 		(line[1] && line[0] == '"' && line[1] == '<') ||
-		(line[1] && line[0] == '\'' && line[1] == '<'))
+		(line[1] && line[0] == '\'' && line[1] == '<')))
 		tmp = ft_strjoin("echo -n '' ", line);
 	else
 		tmp = ft_strdup(line);

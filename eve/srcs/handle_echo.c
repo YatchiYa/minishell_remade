@@ -18,7 +18,7 @@ void		display_echo(char **argv, int i, int cnt)
 	while (argv[i])
 	{
 		ft_putstr(argv[i]);
-		if (i < cnt - 1)
+		if (i < cnt - 1 && ft_strlen(argv[i]) != 0)
 			ft_putstr(" ");
 		i++;
 	}

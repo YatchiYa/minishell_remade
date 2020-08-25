@@ -25,25 +25,27 @@ int		trim_backslash(char *line, int *i, char quote)
 
 int		trim_quote(char *line, int i)
 {
-	if (line[i] == '\"' && (i == 0 || line[i - 1] != '\\'))
+	if (line[i] == '\"' && (i == 0 || (line[i - 1] != '\\'
+				&& line[i - 2] != '\\')))
 	{
 		i++;
 		while (trim_backslash(line, &i, '\"'))
 			i++;
 		if (line[i] == '\0')
 		{
-			ft_putstr("QUOTES SS NEED TO BE CLOSE\n");
+			ft_putstr("QUOTES DXDD NEED TO BE CLOSE\n");
 			return (-1);
 		}
 	}
-	else if (line[i] == '\'' && (i == 0 || line[i - 1] != '\\'))
+	else if (line[i] == '\'' && (i == 0 || (line[i - 1] != '\\'
+				&& line[i - 2] != '\\')))
 	{
 		i++;
-		while (trim_backslash(line, &i, '\''))
+		while (line[i] != '\'' && line[i])
 			i++;
 		if (line[i] == '\0')
 		{
-			ft_putstr("QUOTES XX NEED TO BE CLOSE\n");
+			ft_putstr("QUOTES ZZ NEED TO BE CLOSE\n");
 			return (-1);
 		}
 	}
@@ -103,7 +105,7 @@ int		word_str_count(char *line)
 			count++;
 			while (!ft_is_sep_space(SEP_SPACE, line[i]) && line[i])
 			{
-				if ((i = trim_quote(line, i)) == -1)
+				if ((i = trim_quote_2(line, i)) == -1)
 					return (0);
 				if (trim_backslash_2(line, &i) == 0)
 					return (0);

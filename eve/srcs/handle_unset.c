@@ -47,7 +47,7 @@ int			handle_unset(t_cmd *cmd)
 	i = 1;
 	while (cmd->argv[i])
 	{
-		if (str_alphnum(cmd->argv[i]) == 0)
+		if (str_alphnum(cmd->argv[i]) != 0)
 		{
 			ft_putstr("minishell : << ");
 			ft_putstr(cmd->argv[i]);

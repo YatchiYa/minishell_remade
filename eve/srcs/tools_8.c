@@ -16,6 +16,7 @@ void		free_tab_non(char *builtins[8])
 {
 	int		i;
 
+	i = 0;
 	while (builtins[i] && i < 8)
 	{
 		free(builtins[i]);

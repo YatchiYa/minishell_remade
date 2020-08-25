@@ -2,7 +2,6 @@
 
 echo ~
 echo "~" '~' ~
-echo ~ "~" '~' ~
 echo -nnnnn -nnnn -nnnnn
 echo -nnnnn -nnnn -nnnnnm
 echo -nnnnss -nnnn -nnnnnm
@@ -28,7 +27,7 @@ echo "\n \\n \\\n"
 echo hi; echo hihi;
 echo ;;	
 echo hi";" hihi
-echo hi "   ;   " hihi
+  echo hi "   ;   " hihi
 echo one; echo two; echo three;
 
 XXXX        cd
@@ -96,6 +95,8 @@ XXXX Commandes valides et basiques
 awk
 echo
 echo -n
+echo "-n"
+echo '-n'
 echo -n -n -n -n
 echo -n -n -n -n hi
 echo -nd -n -n -n hi
@@ -239,14 +240,14 @@ cat fddsqffgfhds
   cd ; ../../bin/cdfg
 cd ; ../../bin/ls
 
-XXXX multi lignes
-
 '''''
 '
 \";"\
 echo "\"
 echo |
 
+------------------------------------
+XXXX multi lignes
 export var="bonjour\toi" > bonjour\toi														
 export var="bonjour\\toi" > bonjour\toi					
 
@@ -261,11 +262,12 @@ $bla (non-export) > retour a la ligne
 
 export var ="cat Makefile | grep >"
 export var="cat Makefile | grep > t1" 
-export var="cat Makefile | grep >"  ; $var
+export var="cat Makefile | grep >"
+$var
 cat Makefile "|" grep ">" 
 
 export var="ls > t1"
-export var="cat > t1" ; $var
+$var
 
 echo hi > t1 ; 
 export var="cat t1"
@@ -285,7 +287,7 @@ $LESS$VAR
 not_cmd																
 sleep 5 | exit					
 echo $var bonjour avec $var non export > [bonjour]										
-echo "" bonjour > [ bonjour]		   	  												
+echo "" bonjour > [ bonjour]
 cat -e > test1 < test2 > meme si test2 n'existe pas test1 doit être créé				
 unset = > erreur	   	  	   	  				 	 	   			 					
 export test="123"" ; echo $test > 123"													
@@ -323,8 +325,7 @@ $SHLVL > doit être incrémenté a chaque lancement de minishell
 echo bonjour ; | > 2																	
 echo bonjour | | > 2																	
 | > 2																					
-echo bonjour |; > 2																	
-echo bonjour \; ls > bonjour ; ls														
+echo bonjour |; > 2																					
 echo bonjour > test\ 1 > creation du fichier "test 1"									
 cd $HOME/Bureau > accède au dossier Bureau	  											
 echo "\s" & echo "\\s" > should have the exact same output.							
@@ -340,4 +341,4 @@ unset var > var1 ne doit pas etre unset
 export ""  et unset "" > erreur														
 echo test > file test1 > = echo test test1 > file										
 
-echo \>\>																				
+echo bonjour \; ls > bonjour ; ls	

@@ -100,7 +100,7 @@ int					check_errors_arg(char **argv);
 int					word_str_count(char *line);
 int					trim_space(char *line, int i, int jmp);
 int					jmp_quotes(char *line, int i);
-int					init_cmd(char **argv, int i);
+int					init_cmd(char **argv, int i, int ret);
 int					check_errors_arg(char **argv);
 int					is_point_virgule(char **argv);
 int					is_pipe(char **argv);
@@ -183,5 +183,7 @@ char				*parse_quote_q(char *argv, int i, t_cmd *cmd);
 int					is_builtin_ext(char *arg, int i);
 void				ext_non_built(t_cmd *cmd, char **tmp);
 int					trim_backslash_2(char *line, int *i);
+int					trim_quote_2(char *line, int i);
+int					trim_backslash(char *line, int *i, char quote);
 
 #endif
