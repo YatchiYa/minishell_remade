@@ -76,7 +76,7 @@ int			main(int argc, char **argv, char **env)
 		prompt_msg();
 		if (!ft_getline())
 			continue ;
-		if (!init_cmd(get_minish()->argv, 0), 1)
+		if (!init_cmd(get_minish()->argv, 0))
 		{
 			free_1();
 			continue ;

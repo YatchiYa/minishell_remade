@@ -100,7 +100,7 @@ int					check_errors_arg(char **argv);
 int					word_str_count(char *line);
 int					trim_space(char *line, int i, int jmp);
 int					jmp_quotes(char *line, int i);
-int					init_cmd(char **argv, int i, int ret);
+int					init_cmd(char **argv, int i);
 int					check_errors_arg(char **argv);
 int					is_point_virgule(char **argv);
 int					is_pipe(char **argv);

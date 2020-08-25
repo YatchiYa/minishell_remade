@@ -68,9 +68,10 @@ void		add_argv_cmd(t_cmd *cmd, char *arg)
 	last->argv = new_arr;
 }
 
-int			init_cmd(char **argv, int i, int ret)
+int			init_cmd(char **argv, int i)
 {
 	t_minish	*minish;
+	int			ret;
 
 	if (!check_errors_arg(argv))
 		return (0);
@@ -78,6 +79,7 @@ int			init_cmd(char **argv, int i, int ret)
 	minish->cmd = 0;
 	minish->input_first = 0;
 	minish->output_first = 0;
+	ret = 1;
 	while (argv[i])
 	{
 		if (ret && !(ret = 0))
